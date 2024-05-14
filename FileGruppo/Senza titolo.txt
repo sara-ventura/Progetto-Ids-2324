@@ -1,0 +1,45 @@
+ 
+
+TUTTI
+-elimina proprio account (un utente registrato sulla piattaforma elimina il proprio account)
+
+
+-elimina contenuti (un utente autorizzato elimina un contenuto dalla piattaforma)
+ -modifica contenuti  (un utente autorizzato modifica un contenuto presente sulla piattaforma)
+ -elimina itinerari  (un utente autorizzato elimina un itinerario dalla piattaforma) 
+ -modifica itinerari (un utente autorizzato modifica le specifiche di un itinerario presente sulla piattaforma)
+ -elimina POI (un utente autorizzato elimina un poi dalla piattaforma) 
+ -modifica POI (un utente autorizzato modifica le specifiche di un poi presente sulla) 
+
+
+ANIMATORE
+ -crea contest  (un animatore crea un nuovo contest nella piattaforma in relazione ad un contenuto) 
+ -modifica contest (un animatore modifica le specifiche di un contest presente sulla piattaforma in relazione ad un contenuto)
+ -elimina contest (un animatore elimina un contest dalla piattaforma)
+-elimina iscrizione utente (un animatore elimina l'iscrizione di un utente ad un contest)
+ -verifica contenuti contest 
+ -invita partecipanti (un animatore invita gli utenti della piattaforma a partecipare ad un contest in relazione ad un contenuto)
+ -decreta vincitore (un animatore decreta il vincitore del contest in relazione ad un contenuto, tra gli utenti partecipanti al contest)
+
+
+
+CURATORE
+ -carica contenuti social (il curatore carica sui canali social di un territorio i contenuti della piattafrorma)
+ -elimina contenuti social (il curatore elimina dai canali social di un territorio un contenuto della piattaforma)
+ -modifica contenuti social (il curatore modificale specifiche sui canali social di un territorio di un contenuto della piattaforma)
+ 
+(-verifica contenuti contributors (il curatore verifica i contenuti che i contributor vogliono pubblicare sulla piattaforma siano conformi) 
+ -verifica POI contributors
+ -verifica itinerari contributors) TRASFORMARLO IN VERIFICA RICHIESTE CARICAMENTO (?)
+
+
+GESTORE DELLA PIATTAFORMA
+ -assegna ruolo 
+ -crea account
+ -aggiunge comune 
+ -elimina account utente (il gestore della piattaforma elimina un account di un utente sulla piattaforma)
+
+
+
+TURISTA AUTENTICATO
+-salva contenuti (AGGIUNGI ANCHE AGLI ALTRI) (un utente salva sulla sua area personale dei contenuti sulla piattaforma)

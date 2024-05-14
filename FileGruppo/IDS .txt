@@ -1,0 +1,97 @@
+IDS 
+
+ATTORI
+Contributors
+ -carica contenuti  x
+ -carica POI  x
+ -effettua login
+ -effettua registrazione
+ -crea itinerari  x
+ -effettua ricerca
+ -segnala i contenuti 
+ -elimina contenuti (post approvazione)
+ -modifica contenuti (post approvazione)
+ -elimina itinerari (post approvazione)
+ -modifica itinerari (post approvazione)
+ -elimina POI (post approvazione)
+ -modifica POI (post approvazione)
+ -elimina proprio account 
+
+Contributors autorizzati
+ -carica contenuti
+ -carica POI
+ -effettua login
+ -crea itinerari  
+ -effettua ricerca
+ -segnala i contenuti 
+ -elimina contenuti 
+ -modifica contenuti 
+ -elimina itinerari 
+ -modifica itinerari 
+ -elimina POI
+ -modifica POI
+ -elimina proprio account 
+
+Animatore
+ -effettua login
+ -crea contest    
+ -modifica contest
+ -elimina contest
+ -elimina iscrizione utente
+ -verifica contenuti contest 
+ -invita partecipanti
+ -decreta vincitore 
+ -effettua ricerca
+
+Curatore
+ -effettua login
+ -carica contenuti
+ -carica POI
+ -carica contenuti social
+ -elimina contenuti social
+ -modifica contenuti social
+ -verifica contenuti contributors  
+ -verifica POI contributors
+ -segnala contenuti
+ -crea itinerari
+ -verifica itinerari contributors
+ -elimina contenuti 
+ -modifica contenuti 
+ -elimina itinerari 
+ -modifica itinerari 
+ -elimina POI
+ -modifica POI
+ -effettua ricerca
+
+Gestore
+ -effettua login
+ -verifica contenuti   
+ -verifica itinerario
+ -verifica POI
+ -assegna ruolo
+ -crea account
+ -effettua ricerca
+ -aggiunge comune
+ -elimina account utente
+
+Turista
+ -segnala contenuti 
+ -effettua ricerca
+
+Turista autenticato
+ -effettua registrazione
+ -effettua login
+ -segnala contenuti 
+ -effettua ricerca
+ -salva contenuti
+ -carica contenuti
+ -modifica contenuti 
+ -elimina contenuti
+ -elimina proprio account 
+
+ESTERNI
+Social
+Sistema OSM
+Tempo
+ -elimina POI
+ -elimina itinerario
