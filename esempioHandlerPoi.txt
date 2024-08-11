@@ -1,0 +1,18 @@
+class HanderPoi{
+
+Poi caricaPoiTemporaneo(){
+string descrizione;
+int dataInizio;
+int dataFine;
+
+inserisciDescrizione(descrizione);
+inserisciDataInizio(dataInizio);
+InserisciDataFine(dataFine);
+
+Poi poi :  new Poi (descrizione, data... data...)
+
+return aggiungiPoi(poi);
+}
+
+
+}
