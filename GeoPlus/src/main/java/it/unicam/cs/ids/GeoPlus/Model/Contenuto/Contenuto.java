@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Contenuto;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.EntitàRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.SoggettoRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
@@ -10,7 +11,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
  * Classe astratta che rappresenta un contenuto associato a un punto di interesse (Poi)
  * e a un autore registrato.
  */
-public abstract class Contenuto implements SoggettoRichiesta {
+public abstract class Contenuto extends EntitàRichiesta {
 
     private UtenteRegistrato autoreContenuto;
     private Poi poi;

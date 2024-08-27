@@ -1,10 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Pois;
 
-import it.unicam.cs.ids.GeoPlus.Model.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.*;
 import it.unicam.cs.ids.GeoPlus.Model.Contenuto.Contenuto;
-import it.unicam.cs.ids.GeoPlus.Model.Coordinate;
-import it.unicam.cs.ids.GeoPlus.Model.Orari;
-import it.unicam.cs.ids.GeoPlus.Model.SoggettoRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 import java.time.LocalTime;
@@ -16,7 +13,7 @@ import java.util.Map;
  * La classe Poi rappresenta un punto di interesse (POI) in un comune.
  * Contiene informazioni sul nome, descrizione, posizione, orari, contenuti associati e l'autore.
  */
-public class Poi implements SoggettoRichiesta {
+public class Poi extends EntitàRichiesta {
 
  //   private Long idPoi;
     private String nomePoi;
