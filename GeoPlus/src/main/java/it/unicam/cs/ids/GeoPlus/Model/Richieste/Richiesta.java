@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
-import it.unicam.cs.ids.GeoPlus.Model.EntitàRichiesta;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 import java.util.Objects;
@@ -11,13 +11,13 @@ import java.util.Objects;
  * nel sistema GeoPlus. Funziona come classe base per varie tipologie di richieste
  * che possono essere gestite nel sistema.
  * Questa classe utilizza un parametro generico T che deve estendere
- * EntitàRichiesta, permettendo così di definire diversi tipi di richieste
+ * EntitaRichiesta, permettendo così di definire diversi tipi di richieste
  * con diverse entità associate.
  *
- * @param <T> il tipo di entità richiesta che deve estendere EntitàRichiesta
+ * @param <T> il tipo di entità richiesta che deve estendere EntitaRichiesta
  */
 
-public abstract class Richiesta<T extends EntitàRichiesta> {
+public abstract class Richiesta<T extends EntitaRichiesta> {
 
 
     private Long RichiestaId;

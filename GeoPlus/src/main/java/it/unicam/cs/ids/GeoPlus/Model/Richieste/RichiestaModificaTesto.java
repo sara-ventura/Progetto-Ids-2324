@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
-import it.unicam.cs.ids.GeoPlus.Model.EntitàRichiesta;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 /**
@@ -14,11 +14,11 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
  * specifica nel contesto di un comune e da parte di un utente registrato.
  * </p>
  *
- * @param <T> il tipo di entità richiesta che estende EntitàRichiesta
+ * @param <T> il tipo di entità richiesta che estende EntitaRichiesta
  */
 
 
-public abstract class RichiestaModificaTesto<T extends EntitàRichiesta> extends Richiesta<T> {
+public abstract class RichiestaModificaTesto<T extends EntitaRichiesta> extends Richiesta<T> {
 
     private String modificaTesto;
 

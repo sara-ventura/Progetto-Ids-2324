@@ -11,7 +11,7 @@ import java.util.List;
  * La classe Itinerario rappresenta un itinerario che contiene un elenco di punti di interesse (Poi)
  * associati a un comune e a un autore registrato.
  */
-public class Itinerario extends EntitàRichiesta {
+public class Itinerario extends EntitaRichiesta {
 
     // private Long IdItinerario;
     private String nomeItinerario;

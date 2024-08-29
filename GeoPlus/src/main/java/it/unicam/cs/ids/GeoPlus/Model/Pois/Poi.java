@@ -1,7 +1,10 @@
 package it.unicam.cs.ids.GeoPlus.Model.Pois;
 
-import it.unicam.cs.ids.GeoPlus.Model.*;
+import it.unicam.cs.ids.GeoPlus.Model.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Contenuto.Contenuto;
+import it.unicam.cs.ids.GeoPlus.Model.Coordinate;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
+import it.unicam.cs.ids.GeoPlus.Model.Orari;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 import java.time.LocalTime;
@@ -13,25 +16,25 @@ import java.util.Map;
  * La classe Poi rappresenta un punto di interesse (POI) in un comune.
  * Contiene informazioni sul nome, descrizione, posizione, orari, contenuti associati e l'autore.
  */
-public class Poi extends EntitàRichiesta {
+public class Poi extends EntitaRichiesta {
 
- //   private Long idPoi;
+    //   private Long idPoi;
     private String nomePoi;
     private String descrizionePoi;
     private Coordinate posizionePoi;
     private Orari orariPoi;
     private Comune comunePoi;
     private List<Contenuto> contenutiAssociati;
-    private UtenteRegistrato autorePoi;
+
 
     /**
      * Costruttore per creare un oggetto Poi.
      *
-     * @param nomePoi         Il nome del punto di interesse.
-     * @param descrizionePoi  La descrizione del punto di interesse.
-     * @param posizionePoi    Le coordinate del punto di interesse.
-     * @param comunePoi       Il comune a cui appartiene il punto di interesse.
-     * @param autorePoi       L'utente registrato che ha creato il punto di interesse.
+     * @param nomePoi        Il nome del punto di interesse.
+     * @param descrizionePoi La descrizione del punto di interesse.
+     * @param posizionePoi   Le coordinate del punto di interesse.
+     * @param comunePoi      Il comune a cui appartiene il punto di interesse.
+     * @param autorePoi      L'utente registrato che ha creato il punto di interesse.
      * @throws IllegalArgumentException se la posizione non è valida nel comune.
      */
     public Poi(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi, UtenteRegistrato autorePoi) {
@@ -40,7 +43,6 @@ public class Poi extends EntitàRichiesta {
             this.descrizionePoi = descrizionePoi;
             this.posizionePoi = posizionePoi;
             this.comunePoi = comunePoi;
-            this.autorePoi = autorePoi;
             this.orariPoi = new Orari();
             this.contenutiAssociati = new ArrayList<>();
         } else {
@@ -49,7 +51,8 @@ public class Poi extends EntitàRichiesta {
     }
 
 
-    public Poi() {}
+    public Poi() {
+    }
 
     /*
      * Restituisce l'ID del punto di interesse.
@@ -110,19 +113,11 @@ public class Poi extends EntitàRichiesta {
         return this.comunePoi; // Ritorna il comune a cui appartiene il punto di interesse
     }
 
-    /**
-     * Restituisce l'autore del punto di interesse.
-     *
-     * @return L'utente registrato che ha creato il punto di interesse.
-     */
-    public UtenteRegistrato getAutorePoi() {
-        return autorePoi;
-    }
 
     /**
      * Imposta gli orari di apertura per un giorno specifico.
      *
-     * @param giorno        Il giorno per cui impostare gli orari.
+     * @param giorno         Il giorno per cui impostare gli orari.
      * @param orarioApertura L'orario di apertura.
      * @param orarioChiusura L'orario di chiusura.
      */

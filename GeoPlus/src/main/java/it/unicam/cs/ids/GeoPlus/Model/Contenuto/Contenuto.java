@@ -1,9 +1,8 @@
 package it.unicam.cs.ids.GeoPlus.Model.Contenuto;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
-import it.unicam.cs.ids.GeoPlus.Model.EntitàRichiesta;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Pois.Poi;
-import it.unicam.cs.ids.GeoPlus.Model.SoggettoRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 
@@ -11,10 +10,10 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
  * Classe astratta che rappresenta un contenuto associato a un punto di interesse (Poi)
  * e a un autore registrato.
  */
-public abstract class Contenuto extends EntitàRichiesta {
+public abstract class Contenuto extends EntitaRichiesta {
 
-    private UtenteRegistrato autoreContenuto;
     private Poi poi;
+    private UtenteRegistrato autoreContenuto;
 
     /**
      * Costruttore per creare un oggetto Contenuto.
@@ -23,24 +22,14 @@ public abstract class Contenuto extends EntitàRichiesta {
      * @param poi             Il punto di interesse associato al contenuto.
      */
     public Contenuto(UtenteRegistrato autoreContenuto, Poi poi) {
-        this.autoreContenuto = autoreContenuto;
         this.poi = poi;
+        this.autoreContenuto = autoreContenuto;
     }
 
     /**
      * Costruttore di default per creare un oggetto Contenuto.
      */
     public Contenuto() {
-        // Costruttore di default
-    }
-
-    /**
-     * Restituisce l'autore del contenuto.
-     *
-     * @return L'autore registrato del contenuto.
-     */
-    public UtenteRegistrato getAutoreContenuto() {
-        return this.autoreContenuto;
     }
 
     /**
@@ -60,6 +49,15 @@ public abstract class Contenuto extends EntitàRichiesta {
     @Override
     public Comune getComune() {
         return this.poi.getComune();
+    }
+
+    /**
+     * Restituisce l'autore del contenuto.
+     *
+     * @return l'autore del contenuto.
+     */
+    public UtenteRegistrato getAutoreContenuto() {
+        return autoreContenuto;
     }
 
     // @Override

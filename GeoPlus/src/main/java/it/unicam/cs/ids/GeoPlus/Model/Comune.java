@@ -16,6 +16,7 @@ public class Comune {
     private String nomeComune;
     private String descrizione;
     private List<Poi> listaPoi;
+    private List<Itinerario> listaItinerari;
     private Coordinate[] superficie;
 
     /**
@@ -31,6 +32,7 @@ public class Comune {
             this.nomeComune = nomeComune;
             this.descrizione = descrizione;
             this.listaPoi = new ArrayList<>();
+            listaItinerari = new ArrayList<>();
             this.superficie = superficie;
         } else {
             throw new IllegalArgumentException("superficie non valida");
@@ -41,7 +43,8 @@ public class Comune {
      * Costruttore vuoto per la classe Comune.
      */
     public Comune() {
-        // Costruttore vuoto
+        this.listaPoi = new ArrayList<>();
+        this.listaItinerari = new ArrayList<>();
     }
 
     /**
@@ -96,6 +99,16 @@ public class Comune {
         return this.listaPoi;
     }
 
+
+    /**
+     * Restituisce la lista degli itinerari associati al comune.
+     *
+     * @return Lista degli itinerari del comune.
+     */
+    public List<Itinerario> getItinerariAssociati() {
+        return this.listaItinerari;
+    }
+
     /**
      * Verifica se una coordinata è contenuta all'interno della superficie del comune.
      *
@@ -139,6 +152,30 @@ public class Comune {
      */
     public boolean rimuoviPoi(Poi poi) {
         return listaPoi.remove(poi);
+    }
+
+    /**
+     * Aggiunge un itinerario alla lista di quelli associati al comune
+     *
+     * @param itinerario l'itinerario da aggiungere.
+     * @return true se è stato aggiunto con successo, false altrimenti.
+     */
+    public boolean aggiungiItinerario(Itinerario itinerario) {
+        if (itinerario.getComune().equals(this) && !listaItinerari.contains(itinerario)) {
+            listaItinerari.add(itinerario);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Rimuove un itinerario dalla lista di quelli associati al comune
+     *
+     * @param itinerario l'itinerario da rimuovere.
+     * @return true se è stato rimosso con successo, false altrimenti.
+     */
+    public boolean rimuoviItinerario(Itinerario itinerario) {
+        return listaItinerari.remove(itinerario);
     }
 
 
