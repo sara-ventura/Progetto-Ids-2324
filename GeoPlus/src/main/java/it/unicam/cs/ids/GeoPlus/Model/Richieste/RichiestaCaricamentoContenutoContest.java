@@ -2,19 +2,22 @@ package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Contenuto.Contenuto;
+import it.unicam.cs.ids.GeoPlus.Model.Contest.Contest;
 import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
-public class RichiestaCaricamentoContenuto extends Richiesta {
-
+public class RichiestaCaricamentoContenutoContest extends Richiesta {
     private Contenuto contenuto;
+    private Contest contest;
 
-    public RichiestaCaricamentoContenuto(UtenteRegistrato autoreRichiesta, Comune comune, Contenuto Contenuto) {
+    public RichiestaCaricamentoContenutoContest(UtenteRegistrato autoreRichiesta, Comune comune, Contenuto contenuto, Contest contest) {
         super(autoreRichiesta, comune);
-        this.contenuto = Contenuto;
+        this.contenuto = contenuto;
+        this.contest = contest;
     }
 
-    public RichiestaCaricamentoContenuto() {
+    public RichiestaCaricamentoContenutoContest(){
+
     }
 
     @Override

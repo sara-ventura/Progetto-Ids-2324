@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Pois.PoiTemporaneo;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
@@ -16,13 +17,13 @@ import java.time.LocalDateTime;
  * di interesse che hanno un periodo di validità definito.
  */
 
-public class RichiestaModificaPeriodoTempo extends Richiesta<PoiTemporaneo> {
+public class RichiestaModificaPeriodoTempo extends Richiesta {
 
+    private PoiTemporaneo poiTemporaneo;
+    private LocalDateTime dataApertura;
+    private LocalDateTime dataChiusura;
 
-   private LocalDateTime dataApertura;
-   private LocalDateTime dataChiusura;
-
- /**
+    /**
      * Costruttore che inizializza una nuova richiesta di modifica del periodo
      * di tempo per un PoiTemporaneo con i dettagli specificati.
      *
@@ -34,7 +35,7 @@ public class RichiestaModificaPeriodoTempo extends Richiesta<PoiTemporaneo> {
      */
 
     public RichiestaModificaPeriodoTempo(UtenteRegistrato autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
-        super(autoreRichiesta, comune, poiTemporaneo);
+        super(autoreRichiesta, comune);
         this.dataApertura = dataApertura;
         this.dataChiusura = dataChiusura;
     }
@@ -43,7 +44,12 @@ public class RichiestaModificaPeriodoTempo extends Richiesta<PoiTemporaneo> {
 
     }
 
- /**
+    @Override
+    public PoiTemporaneo getEntitaRichiesta() {
+        return poiTemporaneo;
+    }
+
+    /**
      * Restituisce la data e l'ora di chiusura proposte per il periodo di validità.
      *
      * @return la data e l'ora di chiusura proposte
@@ -54,7 +60,7 @@ public class RichiestaModificaPeriodoTempo extends Richiesta<PoiTemporaneo> {
         return dataChiusura;
     }
 
-  /**
+    /**
      * Restituisce la data e l'ora di apertura proposte per il periodo di validità.
      *
      * @return la data e l'ora di apertura proposte

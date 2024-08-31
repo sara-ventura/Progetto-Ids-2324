@@ -23,7 +23,6 @@ public abstract class Richiesta<T extends EntitaRichiesta> {
     private Long RichiestaId;
     private UtenteRegistrato autoreRichiesta;
     private Comune comune;
-    private T entitàRichiesta;
 
 
     public Richiesta() {
@@ -37,10 +36,9 @@ public abstract class Richiesta<T extends EntitaRichiesta> {
      * @param entitàRichiesta l'entità specifica associata alla richiesta
      */
 
-    public Richiesta(UtenteRegistrato autoreRichiesta, Comune comune, T entitàRichiesta) {
+    public Richiesta(UtenteRegistrato autoreRichiesta, Comune comune) {
         this.autoreRichiesta = autoreRichiesta;
         this.comune = comune;
-        this.entitàRichiesta = entitàRichiesta;
     }
 
 /**
@@ -69,10 +67,7 @@ public abstract class Richiesta<T extends EntitaRichiesta> {
      * @return l'entità richiesta
      */
 
-    public T getEntitàRichiesta() {
-        return entitàRichiesta;
-    }
-
+    public abstract EntitaRichiesta getEntitaRichiesta();
 //    @Override
 //    public boolean equals(Object o) {
 //

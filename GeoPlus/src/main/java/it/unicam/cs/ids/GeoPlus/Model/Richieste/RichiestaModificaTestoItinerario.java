@@ -2,6 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
 
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
@@ -18,9 +19,11 @@ import java.util.Objects;
  * associate a un itinerario.
  */
 
-public class RichiestaModificaTestoItinerario extends RichiestaModificaTesto<Itinerario> {
+public class RichiestaModificaTestoItinerario extends RichiestaModificaTesto {
 
- /**
+    private Itinerario itinerario;
+
+    /**
      * Costruttore che inizializza una nuova richiesta di modifica del testo per un itinerario con i dettagli specificati.
      *
      * @param autoreRichiesta l'utente registrato che ha effettuato la richiesta
@@ -35,6 +38,11 @@ public class RichiestaModificaTestoItinerario extends RichiestaModificaTesto<Iti
 
     public RichiestaModificaTestoItinerario() {
 
+    }
+
+    @Override
+    public Itinerario getEntitaRichiesta() {
+        return itinerario;
     }
 
 //

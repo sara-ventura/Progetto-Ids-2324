@@ -2,6 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Contenuto.Contenuto;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 /**
@@ -14,7 +15,10 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
  * possono essere associate a un oggetto di tipo Contenuto.
  */
 
-public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto<Contenuto>{
+public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto {
+
+  private Contenuto contenuto;
+
 
   /**
      * Costruttore che inizializza una nuova richiesta di modifica del testo per un contenuto con i dettagli specificati.
@@ -27,9 +31,16 @@ public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto<Cont
 
     public RichiestaModificaTestoContenuto(UtenteRegistrato autoreRichiesta, Comune comune, Contenuto contenuto, String modificaTesto) {
         super(autoreRichiesta, comune, contenuto, modificaTesto);
+      this.contenuto = contenuto;
+
     }
 
     public RichiestaModificaTestoContenuto() {
 
     }
+
+  @Override
+  public Contenuto getEntitaRichiesta() {
+    return null;
+  }
 }

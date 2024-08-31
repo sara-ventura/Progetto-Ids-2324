@@ -1,6 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
@@ -15,7 +16,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
  * informazioni turistiche o altre forme di testo che possono essere associate a un POI.
  */
 
-public class RichiestaModificaTestoPoi extends RichiestaModificaTesto<Poi> {
+public class RichiestaModificaTestoPoi extends RichiestaModificaTesto {
+  private Poi poi;
 
   /**
      * Costruttore che inizializza una nuova richiesta di modifica del testo per un POI con i dettagli specificati.
@@ -33,4 +35,9 @@ public class RichiestaModificaTestoPoi extends RichiestaModificaTesto<Poi> {
     public RichiestaModificaTestoPoi() {
 
     }
+
+  @Override
+  public Poi getEntitaRichiesta() {
+    return poi;
+  }
 }

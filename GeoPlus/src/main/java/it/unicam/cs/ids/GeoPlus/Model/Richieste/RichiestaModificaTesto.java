@@ -27,12 +27,12 @@ public abstract class RichiestaModificaTesto<T extends EntitaRichiesta> extends 
      *
      * @param autoreRichiesta l'utente registrato che ha effettuato la richiesta
      * @param comune          il comune associato alla richiesta
-     * @param entitàRichiesta l'entità richiesta alla quale si riferisce la modifica del testo
+     * @param entitaRichiesta l'entità richiesta alla quale si riferisce la modifica del testo
      * @param modificaTesto   il testo della modifica proposto
      */
 
-    public RichiestaModificaTesto(UtenteRegistrato autoreRichiesta, Comune comune, T entitàRichiesta, String modificaTesto) {
-        super(autoreRichiesta, comune, entitàRichiesta);
+    public RichiestaModificaTesto(UtenteRegistrato autoreRichiesta, Comune comune, EntitaRichiesta entitaRichiesta, String modificaTesto) {
+        super(autoreRichiesta, comune);
         this.modificaTesto = modificaTesto;
     }
 
