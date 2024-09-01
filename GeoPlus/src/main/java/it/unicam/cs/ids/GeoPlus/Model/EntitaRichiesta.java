@@ -8,6 +8,8 @@ public abstract class EntitaRichiesta implements SoggettoRichiesta {
         return Id;
     }
 
+
     public abstract Comune getComune();
+
 
 }

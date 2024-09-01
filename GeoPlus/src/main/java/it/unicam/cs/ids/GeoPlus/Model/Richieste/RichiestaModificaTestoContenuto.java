@@ -8,7 +8,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 /**
  * La classe RichiestaModificaTestoContenuto rappresenta una richiesta specifica
  * di modifica del testo associato a un oggetto di tipo Contenuto nel sistema GeoPlus.
- * Estende la classe astratta RichiestaModificaTesto<Contenuto>, 
+ * Estende la classe astratta RichiestaModificaTesto
  * utilizzando il tipo specifico Contenuto per gestire le richieste di modifica del testo.
  * Questa classe è utilizzata per gestire le richieste che includono modifiche di testo 
  * su contenuti specifici, come descrizioni, articoli, o altre forme di testo che 

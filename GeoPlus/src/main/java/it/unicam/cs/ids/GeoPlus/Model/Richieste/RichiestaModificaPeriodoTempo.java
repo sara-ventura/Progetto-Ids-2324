@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
  * La classe RichiestaModificaPeriodoTempo rappresenta una richiesta
  * per modificare il periodo di apertura e chiusura associato a un oggetto
  * di tipo PoiTemporaneo nel sistema GeoPlus.
- * Estende la classe generica Richiesta<PoiTemporaneo> specificando
- * che questa richiesta è associata a entità di tipo PoiTemporaneo.
+ * Estende la classe generica Richiesta.
  * Questa classe è utilizzata per gestire modifiche temporali di eventi o punti
  * di interesse che hanno un periodo di validità definito.
  */

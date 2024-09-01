@@ -8,4 +8,5 @@ public interface SoggettoRichiesta {
      * @return Il comune associato.
      */
     public Comune getComune();
+
 }

@@ -12,7 +12,7 @@ import java.util.Objects;
 /**
  * La classe RichiestaModificaTestoItinerario rappresenta una richiesta specifica
  * di modifica del testo associato a un oggetto di tipo Itinerario nel sistema GeoPlus.
- * Estende la classe astratta RichiestaModificaTesto<Itinerario>, 
+ * Estende la classe astratta RichiestaModificaTesto
  * utilizzando il tipo specifico Itinerario per gestire le richieste di modifica del testo.
  * Questa classe è utilizzata per gestire le richieste che includono modifiche di testo 
  * su itinerari specifici, come descrizioni, indicazioni o altre informazioni testuali

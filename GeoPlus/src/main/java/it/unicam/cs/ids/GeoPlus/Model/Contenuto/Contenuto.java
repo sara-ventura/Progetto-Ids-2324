@@ -60,6 +60,8 @@ public abstract class Contenuto extends EntitaRichiesta {
         return autoreContenuto;
     }
 
+    public abstract void setTesto(String testo);
+
     // @Override
     // public boolean equals(Object o) {
     //     // Implementazione dell'uguaglianza

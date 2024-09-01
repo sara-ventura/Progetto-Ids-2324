@@ -9,7 +9,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
  */
 public class InvitoContest {
 
-    private final Contest contest; // Contest a cui si è invitati
+    private final Contest contest;
     private final UtenteRegistrato utenteInvitato;
 
     /**

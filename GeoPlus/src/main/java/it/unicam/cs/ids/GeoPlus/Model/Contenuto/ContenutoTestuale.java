@@ -47,8 +47,9 @@ public class ContenutoTestuale extends Contenuto {
      *
      * @param testo Il nuovo testo del contenuto.
      */
+    @Override
     public void setTesto(String testo) {
-        this.testo = testo; // Aggiorna il testo del contenuto
+        this.testo = testo;
     }
 
 

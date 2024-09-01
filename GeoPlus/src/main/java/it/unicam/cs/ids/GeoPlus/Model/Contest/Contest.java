@@ -1,6 +1,8 @@
 package it.unicam.cs.ids.GeoPlus.Model.Contest;
 
 import it.unicam.cs.ids.GeoPlus.Model.Contenuto.Contenuto;
+import it.unicam.cs.ids.GeoPlus.Model.PeriodoTempo;
+import it.unicam.cs.ids.GeoPlus.Model.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 
 import java.util.ArrayList;
@@ -11,7 +13,8 @@ import java.util.List;
  * Contiene informazioni sul nome, descrizione, regole, visibilità e i partecipanti al contest.
  */
 public class Contest {
-    // private Long idContest; // ID del contest, commentato per attuale assenza.
+
+    // private Long idContest;
 
     private String nomeContest;
     private String descrizione;
@@ -20,6 +23,8 @@ public class Contest {
     private final UtenteRegistrato autoreContest;
     private final List<UtenteRegistrato> listaPartecipanti;
     private final List<Contenuto> listaContenuti;
+    private PeriodoTempo periodoTempo;
+    private UtenteRegistrato vincitoreContest;
 
     /**
      * Costruttore per creare un oggetto Contest.
@@ -30,15 +35,20 @@ public class Contest {
      * @param regole        Le regole del contest.
      * @param pubblico      Indica se il contest è pubblico.
      */
-    public Contest(String nomeContest, String descrizione, UtenteRegistrato autoreContest, String regole, boolean pubblico) {
+    public Contest(String nomeContest, String descrizione, UtenteRegistrato autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo) {
         this.nomeContest = nomeContest;
         this.descrizione = descrizione;
         this.autoreContest = autoreContest;
         this.regole = regole;
         this.pubblico = pubblico;
+        this.periodoTempo = periodoTempo;
         this.listaPartecipanti = new ArrayList<>();
         this.listaContenuti = new ArrayList<>();
     }
+
+    // public Long getIdContest() {
+    //     return this.idContest;
+    // }
 
     /**
      * Restituisce le regole del contest.
@@ -58,11 +68,6 @@ public class Contest {
         this.regole = regole;
     }
 
-    // Uncomment se l'ID del contest è necessario
-    // public Long getIdContest() {
-    //     return this.idContest;
-    // }
-
     /**
      * Restituisce il nome del contest.
      *
@@ -72,6 +77,10 @@ public class Contest {
         return this.nomeContest;
     }
 
+    public void setNomeContest(String nomeContest) {
+        this.nomeContest = nomeContest;
+    }
+
     /**
      * Restituisce la descrizione del contest.
      *
@@ -79,6 +88,10 @@ public class Contest {
      */
     public String getDescrizioneContest() {
         return this.descrizione;
+    }
+
+    public void setDescrizioneContest(String descrizione) {
+        this.descrizione = descrizione;
     }
 
     /**
@@ -115,7 +128,9 @@ public class Contest {
      * @return true se il contenuto è stato aggiunto, false se non è stato aggiunto.
      */
     public boolean aggiungiContenutoContest(Contenuto contenuto) {
-        return this.listaContenuti.add(contenuto);
+        if (!listaContenuti.contains(contenuto)) {
+            return this.listaContenuti.add(contenuto);
+        } else return false;
     }
 
     /**
@@ -135,7 +150,10 @@ public class Contest {
      * @return true se il partecipante è stato aggiunto, false altrimenti.
      */
     public boolean aggiungiPartecipanteContest(UtenteRegistrato partecipante) {
-        return this.listaPartecipanti.add(partecipante);
+        if (!listaPartecipanti.contains(partecipante)) {
+            return this.listaPartecipanti.add(partecipante);
+        }
+        return false;
     }
 
     /**
@@ -146,6 +164,23 @@ public class Contest {
      */
     public boolean rimuoviPartecipanteContest(UtenteRegistrato partecipante) {
         return this.listaPartecipanti.remove(partecipante);
+    }
+
+
+    public PeriodoTempo getPeriodoTempo() {
+        return periodoTempo;
+    }
+
+    public void setPeriodoTempo(PeriodoTempo periodoTempo) {
+        this.periodoTempo = periodoTempo;
+    }
+
+    public UtenteRegistrato getVincitoreContest() {
+        return vincitoreContest;
+    }
+
+    public void setVincitoreContest(UtenteRegistrato vincitoreContest) {
+        this.vincitoreContest = vincitoreContest;
     }
 
 

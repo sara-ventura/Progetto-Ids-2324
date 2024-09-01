@@ -9,7 +9,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Utenti.UtenteRegistrato;
 /**
  * La classe RichiestaModificaTestoPoi rappresenta una richiesta specifica
  * di modifica del testo associato a un oggetto di tipo Poi nel sistema GeoPlus.
- * Estende la classe astratta RichiestaModificaTesto<Poi>, 
+ * Estende la classe astratta RichiestaModificaTesto
  * utilizzando il tipo specifico Poi per gestire le richieste di modifica del testo.
  * Questa classe è utilizzata per gestire le richieste che includono modifiche di testo 
  * su punti di interesse (Point of Interest - POI) specifici, come descrizioni, 
