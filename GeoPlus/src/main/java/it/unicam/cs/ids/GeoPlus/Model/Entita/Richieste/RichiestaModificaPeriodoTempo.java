@@ -3,6 +3,8 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
 
@@ -15,8 +17,10 @@ import java.time.LocalDateTime;
  * di interesse che hanno un periodo di validità definito.
  */
 
+@Entity
 public class RichiestaModificaPeriodoTempo extends Richiesta {
 
+    @ManyToOne
     private PoiTemporaneo poiTemporaneo;
     private LocalDateTime dataApertura;
     private LocalDateTime dataChiusura;
