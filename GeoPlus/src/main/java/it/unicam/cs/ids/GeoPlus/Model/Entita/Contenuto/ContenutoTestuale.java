@@ -6,7 +6,6 @@ import jakarta.persistence.Entity;
 import java.util.Objects;
 
 
-
 @Entity
 public class ContenutoTestuale extends Contenuto {
 

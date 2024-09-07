@@ -15,7 +15,6 @@ import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-
 public abstract class Richiesta {
 
     @Id
