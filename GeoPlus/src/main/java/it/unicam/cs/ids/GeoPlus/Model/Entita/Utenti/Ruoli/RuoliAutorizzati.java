@@ -1,4 +1,6 @@
-package it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti;
+package it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli;
+
+import jakarta.persistence.Embeddable;
 
 /**
  * Enum che rappresenta i ruoli autorizzati nel sistema GeoPlus.
@@ -7,6 +9,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti;
  * Ogni valore enum implementa l'interfaccia {@link Ruoli}, indicandone
  * la natura come ruolo specifico nell'applicazione.
  */
+@Embeddable
 public enum RuoliAutorizzati implements Ruoli {
     /**
      * Ruolo di un contributore autorizzato.

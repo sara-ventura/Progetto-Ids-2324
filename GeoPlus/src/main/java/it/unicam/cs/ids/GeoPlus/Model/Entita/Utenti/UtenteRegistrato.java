@@ -1,9 +1,10 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
+import jakarta.persistence.*;
+
+import java.util.Objects;
 
 /**
  * Rappresenta un utente registrato nel sistema GeoPlus.
@@ -13,209 +14,110 @@ import jakarta.persistence.Id;
 @Entity
 public class UtenteRegistrato {
 
+    /**
+     * Identificatore univoco dell'utente, generato automaticamente dal database.
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUtente;
 
+    /**
+     * Identificatore delle credenziali dell'utente.
+     */
+    private Long idCredenziali;
 
-    private String email;
+    /**
+     * Ruolo dell'utente, che definisce i permessi e le responsabilità.
+     */
+    @Embedded
+    private Ruoli ruoloUtente;
+
+    /**
+     * Comune di appartenenza dell'utente.
+     */
+    @ManyToOne
+    private Comune comuneAppartenenza;
+
+    /**
+     * Costruttore della classe UtenteRegistrato.
+     *
+     * @param ruoloUtente Il ruolo assegnato all'utente.
+     * @param credenziali Le credenziali associate all'utente.
+     */
+    public UtenteRegistrato(Ruoli ruoloUtente, long credenziali) {
+        this.ruoloUtente = ruoloUtente;
+        this.idCredenziali = credenziali;
+    }
+
+    public UtenteRegistrato() {
+
+    }
+
+    /**
+     * Restituisce l'identificatore univoco dell'utente.
+     *
+     * @return L'ID dell'utente.
+     */
+    public Long getIdUtente() {
+        return idUtente;
+    }
+
+    /**
+     * Restituisce l'identificatore delle credenziali dell'utente.
+     *
+     * @return L'ID delle credenziali.
+     */
+    public Long getIdCredenziali() {
+        return idCredenziali;
+    }
+
+    /**
+     * Restituisce il ruolo associato all'utente.
+     *
+     * @return Il ruolo dell'utente.
+     */
+    public Ruoli getRuoloUtente() {
+        return ruoloUtente;
+    }
+
+    /**
+     * Restituisce il comune di appartenenza dell'utente.
+     *
+     * @return Il comune di appartenenza.
+     */
+    public Comune getComuneAppartenenza() {
+        return comuneAppartenenza;
+    }
+
+    /**
+     * Imposta il ruolo dell'utente.
+     *
+     * @param ruoloUtente Il ruolo da assegnare all'utente.
+     */
+    public void setRuoloUtente(Ruoli ruoloUtente) {
+        this.ruoloUtente = ruoloUtente;
+    }
+
+    /**
+     * Imposta il comune di appartenenza dell'utente.
+     *
+     * @param comuneAppartenenza Il comune da assegnare all'utente.
+     */
+    public void setComuneAppartenenza(Comune comuneAppartenenza) {
+        this.comuneAppartenenza = comuneAppartenenza;
+    }
 
 
-    private String password;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UtenteRegistrato that = (UtenteRegistrato) o;
+        return Objects.equals(idCredenziali, that.idCredenziali) && Objects.equals(ruoloUtente, that.ruoloUtente);
+    }
 
-
-//    private Ruoli ruoloUtente;
-//
-//
-//    private Comune comuneApparteneza;
-//
-//
-//    private List<Contenuto> listaContenutiSalvati;
-//
-//
-//    private List<Contenuto> listaContenutiCondivisi;
-//
-//
-//    private List<InvitoContest> listaInvitoContest;
-//
-//    /**
-//     * Crea un nuovo utente registrato con i parametri specificati.
-//     *
-//     * @param ruoloUtente        Il ruolo dell'utente.
-//     * @param comuneApparteneza  Il comune di appartenenza dell'utente.
-//     * @param email              L'email dell'utente.
-//     * @param password           La password dell'utente.
-//     */
-//    public UtenteRegistrato(Ruoli ruoloUtente, Comune comuneApparteneza, String email, String password) {
-//        this.email = email;
-//        this.password = password;
-//        this.ruoloUtente = ruoloUtente;
-//        this.listaContenutiSalvati = new ArrayList<>();
-//        this.listaContenutiCondivisi = new ArrayList<>();
-//        this.listaInvitoContest = new ArrayList<>();
-//    }
-//
-//    /**
-//     * Crea un nuovo utente registrato con valori di default.
-//     */
-//    public UtenteRegistrato() {
-//        this.listaContenutiSalvati = new ArrayList<>();
-//        this.listaContenutiCondivisi = new ArrayList<>();
-//        this.listaInvitoContest = new ArrayList<>();
-//    }
-//
-//    /**
-//     * Restituisce l'email dell'utente.
-//     *
-//     * @return L'email dell'utente.
-//     */
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    /**
-//     * Restituisce la password dell'utente.
-//     *
-//     * @return La password dell'utente.
-//     */
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    /**
-//     * Restituisce il ruolo dell'utente.
-//     *
-//     * @return Il ruolo dell'utente.
-//     */
-//    public Ruoli getRuoloUtente() {
-//        return ruoloUtente;
-//    }
-//
-//    /**
-//     * Restituisce il comune di appartenenza dell'utente.
-//     *
-//     * @return Il comune di appartenenza dell'utente.
-//     */
-//    public Comune getComuneApparteneza() {
-//        return comuneApparteneza;
-//    }
-//
-//    /**
-//     * Imposta il ruolo dell'utente.
-//     *
-//     * @param ruoloUtente Il nuovo ruolo dell'utente.
-//     */
-//    public void setRuoloUtente(Ruoli ruoloUtente) {
-//        this.ruoloUtente = ruoloUtente;
-//    }
-//
-//    /**
-//     * Imposta il comune di appartenenza dell'utente.
-//     *
-//     * @param comuneApparteneza Il nuovo comune di appartenenza.
-//     */
-//    public void setComuneApparteneza(Comune comuneApparteneza) {
-//        this.comuneApparteneza = comuneApparteneza;
-//    }
-//
-//    /**
-//     * Restituisce la lista dei contenuti salvati dall'utente.
-//     *
-//     * @return La lista dei contenuti salvati.
-//     */
-//    public List<Contenuto> getListaContenutiSalvati() {
-//        return listaContenutiSalvati;
-//    }
-//
-//    /**
-//     * Aggiunge un contenuto alla lista dei contenuti salvati dall'utente.
-//     *
-//     * @param contenuto Il contenuto da aggiungere.
-//     * @return true se il contenuto è stato aggiunto correttamente, false se il contenuto era già presente.
-//     */
-//    public boolean aggiungiContenuto(Contenuto contenuto) {
-//        if (!listaContenutiSalvati.contains(contenuto)) {
-//            return listaContenutiSalvati.add(contenuto);
-//        }
-//        return false;
-//    }
-//
-//    /**
-//     * Rimuove un contenuto dalla lista dei contenuti salvati.
-//     *
-//     * @param contenuto Il contenuto da rimuovere.
-//     * @return true se il contenuto è stato rimosso correttamente, false altrimenti.
-//     */
-//    public boolean rimuoviContenuto(Contenuto contenuto) {
-//        return listaContenutiSalvati.remove(contenuto);
-//    }
-//
-//    /**
-//     * Restituisce la lista dei contenuti condivisi dall'utente.
-//     *
-//     * @return La lista dei contenuti condivisi.
-//     */
-//    public List<Contenuto> getListaContenutiCondivisi() {
-//        return listaContenutiCondivisi;
-//    }
-//
-//    /**
-//     * Aggiunge un contenuto alla lista dei contenuti condivisi dall'utente.
-//     * Il contenuto può essere condiviso solo se l'utente è l'autore del contenuto.
-//     *
-//     * @param contenuto Il contenuto da aggiungere.
-//     * @return true se il contenuto è stato aggiunto correttamente, false altrimenti.
-//     */
-//    public boolean aggiungiContenutoCondivisi(Contenuto contenuto) {
-//        if (!listaContenutiCondivisi.contains(contenuto) && contenuto.getAutoreContenuto().equals(this)) {
-//            return listaContenutiCondivisi.add(contenuto);
-//        } else return false;
-//    }
-//
-//    /**
-//     * Rimuove un contenuto dalla lista dei contenuti condivisi.
-//     *
-//     * @param contenuto Il contenuto da rimuovere.
-//     * @return true se il contenuto è stato rimosso correttamente, false altrimenti.
-//     */
-//    public boolean rimuoviContenutoCondivisi(Contenuto contenuto) {
-//        return listaContenutiCondivisi.remove(contenuto);
-//    }
-//
-//    /**
-//     * Restituisce la lista degli inviti a contest ricevuti dall'utente.
-//     *
-//     * @return La lista degli inviti a contest.
-//     */
-//    public List<InvitoContest> getListaInvitoContest() {
-//        return listaInvitoContest;
-//    }
-//
-//    /**
-//     * Aggiunge un invito a contest alla lista degli inviti ricevuti dall'utente.
-//     * L'invito può essere aggiunto solo se l'utente è il destinatario dell'invito.
-//     *
-//     * @param invitoContest L'invito a contest da aggiungere.
-//     * @return true se l'invito è stato aggiunto correttamente, false altrimenti.
-//     */
-//    public boolean aggiungiInvitoContest(InvitoContest invitoContest) {
-//        if (!listaInvitoContest.contains(invitoContest) && invitoContest.getUtenteInvitato().equals(this)) {
-//            return listaInvitoContest.add(invitoContest);
-//        } else return false;
-//    }
-//
-//    /**
-//     * Rimuove un invito a contest dalla lista degli inviti ricevuti.
-//     *
-//     * @param invitoContest L'invito da rimuovere.
-//     * @return true se l'invito è stato rimosso correttamente, false altrimenti.
-//     */
-//    public boolean rimuoviInvitoContest(InvitoContest invitoContest) {
-//        return listaInvitoContest.remove(invitoContest);
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash();
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(idCredenziali, ruoloUtente);
+    }
 }
