@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
-import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
+import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.Objects;
 public class Comune {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long IdComune;
+    private Long idComune;
     private String nomeComune;
     private String descrizione;
     @OneToMany
@@ -33,18 +33,14 @@ public class Comune {
 
     }
 
-
-    public Comune(Coordinate coordinateCentrali) {
-        this.coordinateCentrali = coordinateCentrali;
-        this.listaPoi = new ArrayList<>();
-        this.listaItinerari = new ArrayList<>();
-    }
-
     public Comune() {
         this.listaPoi = new ArrayList<>();
         this.listaItinerari = new ArrayList<>();
     }
 
+    public Long getIdComune() {
+        return idComune;
+    }
 
     public String getNomeComune() {
         return this.nomeComune;
@@ -103,7 +99,7 @@ public class Comune {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Comune comune = (Comune) o;
-        return Objects.equals(IdComune, comune.IdComune) &&
+        return Objects.equals(idComune, comune.idComune) &&
                 Objects.equals(nomeComune, comune.nomeComune) &&
                 Objects.equals(descrizione, comune.descrizione) &&
                 Objects.equals(coordinateCentrali, comune.coordinateCentrali);
@@ -111,6 +107,8 @@ public class Comune {
 
     @Override
     public int hashCode() {
-        return Objects.hash(IdComune, nomeComune, descrizione, coordinateCentrali); // Hash basato su ID, nome, descrizione e coordinate
+        return Objects.hash(idComune, nomeComune, descrizione, coordinateCentrali); // Hash basato su ID, nome, descrizione e coordinate
     }
+
+
 }

@@ -61,7 +61,7 @@ public class UtenteStandard  extends UtenteRegistrato{
      * @return La lista di {@link Contenuto}.
      */
     public List<Contenuto> getListaInvitoContest() {
-        return listaContenutiSalvationtenuti;
+        return listaContenutiSalvati;
     }
 
     /**
