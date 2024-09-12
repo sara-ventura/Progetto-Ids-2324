@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * La classe RichiestaModificaPeriodoTempo rappresenta una richiesta
@@ -70,5 +71,20 @@ public class RichiestaModificaPeriodoTempo extends Richiesta {
 
     public LocalDateTime getDataApertura() {
         return dataApertura;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        RichiestaModificaPeriodoTempo richiestaModificaPeriodoTempo = (RichiestaModificaPeriodoTempo) o;
+        return Objects.equals(poiTemporaneo, richiestaModificaPeriodoTempo.poiTemporaneo) && Objects.equals(dataApertura, richiestaModificaPeriodoTempo.dataApertura) && Objects.equals(dataChiusura, richiestaModificaPeriodoTempo.dataChiusura);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), poiTemporaneo, dataApertura, dataChiusura);
     }
 }

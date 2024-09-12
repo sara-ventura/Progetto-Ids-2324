@@ -6,6 +6,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
+import java.util.Objects;
+
 @Entity
 public class RichiestaCaricamentoContenuto extends Richiesta {
     @OneToOne
@@ -16,6 +18,20 @@ public class RichiestaCaricamentoContenuto extends Richiesta {
         this.contenuto = Contenuto;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        RichiestaCaricamentoContenuto richiestaCaricamentoContenuto = (RichiestaCaricamentoContenuto) o;
+        return Objects.equals(contenuto, richiestaCaricamentoContenuto.contenuto);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), contenuto);
+    }
 
 
     public RichiestaCaricamentoContenuto() {

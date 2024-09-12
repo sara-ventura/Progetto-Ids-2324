@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 public class RichiestaModificaOrario extends Richiesta {
@@ -45,4 +46,18 @@ public class RichiestaModificaOrario extends Richiesta {
         return orarioChiusura;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        RichiestaModificaOrario richiestaModificaOrario = (RichiestaModificaOrario) o;
+        return Objects.equals(poi, richiestaModificaOrario.poi) && Objects.equals(giorno, richiestaModificaOrario.giorno) && Objects.equals(orarioApertura, richiestaModificaOrario.orarioApertura) && Objects.equals(orarioChiusura, richiestaModificaOrario.orarioChiusura);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), poi, giorno, orarioApertura, orarioChiusura);
+    }
 }
