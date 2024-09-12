@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
+import java.util.Objects;
+
 @Entity
 public class RichiestaCaricamentoContenutoContest extends Richiesta {
     @OneToOne
@@ -28,5 +30,19 @@ public class RichiestaCaricamentoContenutoContest extends Richiesta {
     @Override
     public Contenuto getEntitaRichiesta() {
         return contenuto;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        RichiestaCaricamentoContenutoContest richiestaCaricamentoContenutoContest = (RichiestaCaricamentoContenutoContest) o;
+        return Objects.equals(contenuto, richiestaCaricamentoContenutoContest.contenuto) && Objects.equals(contest, richiestaCaricamentoContenutoContest.contest);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), contenuto, contest);
     }
 }

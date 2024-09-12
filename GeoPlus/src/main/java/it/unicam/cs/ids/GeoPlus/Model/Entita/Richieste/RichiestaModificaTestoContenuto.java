@@ -6,6 +6,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
+import java.util.Objects;
+
 /**
  * La classe RichiestaModificaTestoContenuto rappresenta una richiesta specifica
  * di modifica del testo associato a un oggetto di tipo Contenuto nel sistema GeoPlus.
@@ -44,6 +46,21 @@ public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto {
 
   @Override
   public Contenuto getEntitaRichiesta() {
-    return null;
+    return contenuto;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    if (!super.equals(o)) return false;
+
+    RichiestaModificaTestoContenuto richiestaModificaTestoContenuto = (RichiestaModificaTestoContenuto) o;
+    return Objects.equals(contenuto, richiestaModificaTestoContenuto.contenuto) ;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(super.hashCode(), contenuto);
   }
 }

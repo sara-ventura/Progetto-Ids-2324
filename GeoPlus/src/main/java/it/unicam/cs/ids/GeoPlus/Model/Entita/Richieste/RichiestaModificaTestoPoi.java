@@ -6,6 +6,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
+import java.util.Objects;
+
 
 /**
  * La classe RichiestaModificaTestoPoi rappresenta una richiesta specifica
@@ -44,5 +46,20 @@ public class RichiestaModificaTestoPoi extends RichiestaModificaTesto {
     @Override
     public Poi getEntitaRichiesta() {
         return poi;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+
+        RichiestaModificaTestoPoi richiestaModificaTestoPoi = (RichiestaModificaTestoPoi) o;
+        return Objects.equals(poi, richiestaModificaTestoPoi.poi) ;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), poi);
     }
 }
