@@ -23,19 +23,13 @@ public class PoiTemporaneo extends Poi {
     public PoiTemporaneo() {
     }
 
-
-    public LocalDateTime getDataChiusura() {
-        return periodoApertura.getDataFine();
+    public PeriodoTempo getPeriodoApertura() {
+        return periodoApertura;
     }
 
 
     public void setDataChiusura(LocalDateTime dataChiusura) {
         this.periodoApertura.setDataFine(dataChiusura);
-    }
-
-
-    public LocalDateTime getDataApertura() {
-        return periodoApertura.getDataInizio();
     }
 
 
@@ -51,6 +45,7 @@ public class PoiTemporaneo extends Poi {
         PoiTemporaneo that = (PoiTemporaneo) o;
         return Objects.equals(periodoApertura, that.periodoApertura);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), periodoApertura);

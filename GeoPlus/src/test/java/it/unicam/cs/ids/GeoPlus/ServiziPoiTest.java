@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
@@ -63,6 +65,23 @@ public class ServiziPoiTest {
         serviziPoi.eliminaPoi(poi, comune);
         assertTrue(comune.getPoiAssociati().isEmpty());
         assertNull(serviziPoi.getPoi(poi.getPosizionePoi()));
+    }
+
+
+    @Test
+    @Transactional
+    public void testRimuoviPoiTemporaneiScaduti() {
+        LocalDateTime dataScadenza = LocalDateTime.now().minusDays(1);
+        PeriodoTempo periodoTempoScaduto = new PeriodoTempo(LocalDateTime.now().minusDays(10), dataScadenza);
+        PoiTemporaneo poiScaduto = new PoiTemporaneo("POI Scaduto", "Descrizione", new Coordinate(), periodoTempoScaduto);
+        poiRepository.save(poiScaduto);
+        LocalDateTime dataChiusuraNonScaduta = LocalDateTime.now().plusDays(1);
+        PeriodoTempo periodoTempoNonScaduto = new PeriodoTempo(LocalDateTime.now(), dataChiusuraNonScaduta);
+        PoiTemporaneo poiNonScaduto = new PoiTemporaneo("POI Non Scaduto", "Descrizione", new Coordinate(), periodoTempoNonScaduto);
+        poiRepository.save(poiNonScaduto);
+        serviziPoi.rimuoviPoiTemporaneiScaduti();
+        assertNull(poiRepository.findByNomePoi(poiScaduto.getNomePoi()));
+        assertNotNull(poiRepository.findByNomePoi(poiNonScaduto.getNomePoi()));
     }
 
 }

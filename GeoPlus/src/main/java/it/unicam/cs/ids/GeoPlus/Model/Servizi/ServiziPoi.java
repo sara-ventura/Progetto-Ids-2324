@@ -12,6 +12,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -71,5 +72,15 @@ public class ServiziPoi {
 
     public List<Poi> getPois(String nomePoi) {
         return poiRepository.findAllByNomePoi(nomePoi);
+    }
+
+    public void rimuoviPoiTemporaneiScaduti() {
+        List<PoiTemporaneo> poisTemporanei = poiRepository.findAllTemporanei();
+        LocalDateTime oraCorrente = LocalDateTime.now();
+        for (PoiTemporaneo poi : poisTemporanei) {
+            if (poi.getPeriodoApertura().verificaScadenza(oraCorrente)) {
+                poiRepository.delete(poi);
+            }
+        }
     }
 }
