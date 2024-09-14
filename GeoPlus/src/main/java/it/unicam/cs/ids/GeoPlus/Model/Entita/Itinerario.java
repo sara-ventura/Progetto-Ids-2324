@@ -1,13 +1,12 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
+import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 
 @Entity
@@ -21,16 +20,14 @@ public class Itinerario extends EntitaRichiesta {
     private Comune comune;
 
 
-    public Itinerario(String nomeItinerario, String descrizioneItinerario, Comune comune) {
+    public Itinerario(String nomeItinerario, String descrizioneItinerario, Comune comune, List<Poi> listaPoi) {
         this.nomeItinerario = nomeItinerario;
         this.descrizioneItinerario = descrizioneItinerario;
         this.comune = comune;
-
-        this.listaPoi = new ArrayList<>();
+        this.listaPoi = riordinaPoi(listaPoi);
     }
 
     public Itinerario() {
-        this.listaPoi = new ArrayList<>();
     }
 
     public String getNomeItinerario() {
@@ -58,18 +55,6 @@ public class Itinerario extends EntitaRichiesta {
     }
 
 
-    public void aggiungiPoi(Poi poi) {
-        if (!listaPoi.contains(poi)) {
-            listaPoi.add(poi);
-        }
-    }
-
-
-    public void rimuoviPoi(Poi poi) {
-        listaPoi.remove(poi);
-    }
-
-
     public boolean contienePoi(Poi poi) {
         return listaPoi.contains(poi);
     }
@@ -79,6 +64,31 @@ public class Itinerario extends EntitaRichiesta {
         return comune;
     }
 
+
+    private List<Poi> riordinaPoi(List<Poi> listaPoiNonOrdinata) {
+        if (listaPoiNonOrdinata.isEmpty()) {
+            return new ArrayList<>();
+        }
+        Poi puntoDiPartenza = listaPoiNonOrdinata.get(0);
+        List<Poi> ordinati = new ArrayList<>(listaPoiNonOrdinata);
+        ordinati.sort(Comparator.comparingDouble(poi -> calcolaDistanza(puntoDiPartenza.getPosizionePoi(), poi.getPosizionePoi())));
+        return ordinati;
+    }
+
+    public double calcolaDistanza(Coordinate coordinata1, Coordinate coordinata2) {
+        final int R = 6371; // Raggio della Terra in km
+        double lat1 = Math.toRadians(coordinata1.getLatitudine());
+        double lon1 = Math.toRadians(coordinata1.getLongitudine());
+        double lat2 = Math.toRadians(coordinata2.getLatitudine());
+        double lon2 = Math.toRadians(coordinata2.getLongitudine());
+        double dlat = lat2 - lat1;
+        double dlon = lon2 - lon1;
+        double a = Math.sin(dlat / 2) * Math.sin(dlat / 2) +
+                Math.cos(lat1) * Math.cos(lat2) *
+                        Math.sin(dlon / 2) * Math.sin(dlon / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        return R * c;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
