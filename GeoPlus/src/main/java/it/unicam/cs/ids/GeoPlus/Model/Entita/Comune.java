@@ -62,12 +62,10 @@ public class Comune {
     }
 
 
-    public boolean aggiungiPoi(Poi poi) {
+    public void aggiungiPoi(Poi poi) {
         if (!listaPoi.contains(poi)) {
             listaPoi.add(poi);
-            return true;
         }
-        return false;
     }
 
 
@@ -107,8 +105,7 @@ public class Comune {
 
     @Override
     public int hashCode() {
-        return Objects.hash(idComune, nomeComune, descrizione, coordinateCentrali); // Hash basato su ID, nome, descrizione e coordinate
-    }
+        return Objects.hash(idComune, nomeComune, descrizione, coordinateCentrali); }
 
 
 }
