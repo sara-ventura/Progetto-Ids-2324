@@ -2,7 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.Builder;
 
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaModificaPeriodoTempo;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaModificaPT;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -25,7 +25,7 @@ public class RichiestaModificaPeriodoTempoBuilder extends RichiestaBaseBuilder {
     }
 
     @Override
-    public RichiestaModificaPeriodoTempo build() {
-        return new RichiestaModificaPeriodoTempo(this.getAutore(), this.getComune(), poiTemporaneo, dataApertura, dataChiusura );
+    public RichiestaModificaPT build() {
+        return new RichiestaModificaPT(this.getAutore(), this.getComune(), poiTemporaneo, dataApertura, dataChiusura );
     }
 }

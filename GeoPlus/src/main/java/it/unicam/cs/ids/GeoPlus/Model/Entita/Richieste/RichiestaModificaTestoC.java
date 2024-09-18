@@ -9,7 +9,7 @@ import jakarta.persistence.OneToOne;
 import java.util.Objects;
 
 /**
- * La classe RichiestaModificaTestoContenuto rappresenta una richiesta specifica
+ * La classe RichiestaModificaTestoC rappresenta una richiesta specifica
  * di modifica del testo associato a un oggetto di tipo Contenuto nel sistema GeoPlus.
  * Estende la classe astratta RichiestaModificaTesto
  * utilizzando il tipo specifico Contenuto per gestire le richieste di modifica del testo.
@@ -19,7 +19,7 @@ import java.util.Objects;
  */
 
 @Entity
-public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto {
+public class RichiestaModificaTestoC extends RichiestaModificaTesto {
 
   @OneToOne
   private Contenuto contenuto;
@@ -34,13 +34,13 @@ public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto {
      * @param modificaTesto   il testo della modifica proposto
      */
 
-    public RichiestaModificaTestoContenuto(UtenteRegistrato autoreRichiesta, Comune comune, Contenuto contenuto, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTestoC(UtenteRegistrato autoreRichiesta, Comune comune, Contenuto contenuto, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
       this.contenuto = contenuto;
 
     }
 
-    public RichiestaModificaTestoContenuto() {
+    public RichiestaModificaTestoC() {
 
     }
 
@@ -55,8 +55,8 @@ public class RichiestaModificaTestoContenuto extends RichiestaModificaTesto {
     if (o == null || getClass() != o.getClass()) return false;
     if (!super.equals(o)) return false;
 
-    RichiestaModificaTestoContenuto richiestaModificaTestoContenuto = (RichiestaModificaTestoContenuto) o;
-    return Objects.equals(contenuto, richiestaModificaTestoContenuto.contenuto) ;
+    RichiestaModificaTestoC richiestaModificaTestoC = (RichiestaModificaTestoC) o;
+    return Objects.equals(contenuto, richiestaModificaTestoC.contenuto) ;
   }
 
   @Override

@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.Builder;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaModificaTestoContenuto;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaModificaTestoC;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,7 +14,7 @@ public class RichiestaModificaTestoContenutoBuilder extends RIchiestaModificaTes
     }
 
     @Override
-    public RichiestaModificaTestoContenuto build() {
-        return new RichiestaModificaTestoContenuto(this.getAutore(), this.getComune(), contenuto, this.getModificaTesto(), this.getTipoModificaTesto());
+    public RichiestaModificaTestoC build() {
+        return new RichiestaModificaTestoC(this.getAutore(), this.getComune(), contenuto, this.getModificaTesto(), this.getTipoModificaTesto());
     }
 }

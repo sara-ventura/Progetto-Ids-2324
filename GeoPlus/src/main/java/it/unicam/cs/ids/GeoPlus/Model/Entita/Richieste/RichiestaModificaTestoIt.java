@@ -11,7 +11,7 @@ import java.util.Objects;
 
 
 /**
- * La classe RichiestaModificaTestoItinerario rappresenta una richiesta specifica
+ * La classe RichiestaModificaTestoIt rappresenta una richiesta specifica
  * di modifica del testo associato a un oggetto di tipo Itinerario nel sistema GeoPlus.
  * Estende la classe astratta RichiestaModificaTesto
  * utilizzando il tipo specifico Itinerario per gestire le richieste di modifica del testo.
@@ -21,7 +21,7 @@ import java.util.Objects;
  */
 
 @Entity
-public class RichiestaModificaTestoItinerario extends RichiestaModificaTesto {
+public class RichiestaModificaTestoIt extends RichiestaModificaTesto {
 
     @ManyToOne
     private Itinerario itinerario;
@@ -35,12 +35,12 @@ public class RichiestaModificaTestoItinerario extends RichiestaModificaTesto {
      * @param modificaTesto   il testo della modifica proposto
      */
 
-    public RichiestaModificaTestoItinerario(UtenteRegistrato autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTestoIt(UtenteRegistrato autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
         this.itinerario = itinerario;
     }
 
-    public RichiestaModificaTestoItinerario() {
+    public RichiestaModificaTestoIt() {
 
     }
 
@@ -53,13 +53,13 @@ public class RichiestaModificaTestoItinerario extends RichiestaModificaTesto {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        RichiestaModificaTestoItinerario richiestaModificaTestoItinerario = (RichiestaModificaTestoItinerario) o;
-        return Objects.equals(itinerario, richiestaModificaTestoItinerario.itinerario);
+        RichiestaModificaTestoIt richiestaModificaTestoIt = (RichiestaModificaTestoIt) o;
+        return Objects.equals(itinerario, richiestaModificaTestoIt.itinerario);
     }
 
 
     /**
-     * Genera il codice hash per l'oggetto RichiestaModificaTestoItinerario.
+     * Genera il codice hash per l'oggetto RichiestaModificaTestoIt.
      * L'implementazione utilizza il codice hash della superclasse per garantire che
      * le caratteristiche uniche dell'oggetto siano prese in considerazione.
      *

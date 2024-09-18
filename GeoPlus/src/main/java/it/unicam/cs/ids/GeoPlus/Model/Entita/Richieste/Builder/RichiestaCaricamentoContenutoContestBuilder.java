@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.Builder;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contest.Contest;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaCaricamentoContenutoContest;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaSuContest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -19,7 +20,7 @@ public class RichiestaCaricamentoContenutoContestBuilder extends RichiestaBaseBu
 
 
     @Override
-    public RichiestaCaricamentoContenutoContest build() {
-        return new RichiestaCaricamentoContenutoContest(this.getAutore(), this.getComune(), this.contenuto, this.contest);
+    public RichiestaSuContest build() {
+        return new RichiestaSuContest(this.getAutore(), this.getComune(), this.contenuto, this.contest);
     }
 }

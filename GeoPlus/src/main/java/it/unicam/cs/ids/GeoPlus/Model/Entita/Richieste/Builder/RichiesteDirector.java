@@ -44,7 +44,7 @@ public class RichiesteDirector {
     @Autowired
     private RichiestaModificaOrarioBuilder richiestaModificaOrarioBuilder;
 
-    public Richiesta creaRichiestaCaricamento(UtenteStandard autore, EntitaRichiesta entitaRichiesta, Comune comune) {
+    public RichiestaCaricamento creaRichiestaCaricamento(UtenteStandard autore, EntitaRichiesta entitaRichiesta, Comune comune) {
         return switch (entitaRichiesta) {
             case Contenuto contenuto -> {
                 contenutoBuilder.setAutore(autore);
@@ -100,7 +100,7 @@ public class RichiesteDirector {
         };
     }
 
-    public RichiestaModificaPeriodoTempo creaRichiestaModificaPeriodoTempo(UtenteStandard autore, PoiTemporaneo poiTemporaneo, Comune comune, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
+    public RichiestaModificaPT creaRichiestaModificaPeriodoTempo(UtenteStandard autore, PoiTemporaneo poiTemporaneo, Comune comune, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
         richiestaModificaPeriodoTempoBuilder.setAutore(autore);
         richiestaModificaPeriodoTempoBuilder.setComune(comune);
         richiestaModificaPeriodoTempoBuilder.setPoiTemporaneo(poiTemporaneo);
@@ -119,7 +119,7 @@ public class RichiesteDirector {
         return richiestaModificaOrarioBuilder.build();
     }
 
-    public RichiestaCaricamentoContenutoContest creaRichiestaCaricamentoContenutoContest(UtenteStandard autore, Contenuto contenuto, Contest contest, Comune comune) {
+    public RichiestaSuContest creaRichiestaCaricamentoContenutoContest(UtenteStandard autore, Contenuto contenuto, Contest contest, Comune comune) {
         contenutoContestBuilder.setAutore(autore);
         contenutoContestBuilder.setComune(comune);
         contenutoContestBuilder.setContenuto(contenuto);

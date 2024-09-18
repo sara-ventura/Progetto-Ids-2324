@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
- * La classe RichiestaModificaPeriodoTempo rappresenta una richiesta
+ * La classe RichiestaModificaPT rappresenta una richiesta
  * per modificare il periodo di apertura e chiusura associato a un oggetto
  * di tipo PoiTemporaneo nel sistema GeoPlus.
  * Estende la classe generica Richiesta.
@@ -19,7 +19,7 @@ import java.util.Objects;
  */
 
 @Entity
-public class RichiestaModificaPeriodoTempo extends Richiesta {
+public class RichiestaModificaPT extends Richiesta {
 
     @ManyToOne
     private PoiTemporaneo poiTemporaneo;
@@ -37,13 +37,13 @@ public class RichiestaModificaPeriodoTempo extends Richiesta {
      * @param dataChiusura    la data e l'ora di chiusura proposte
      */
 
-    public RichiestaModificaPeriodoTempo(UtenteRegistrato autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
+    public RichiestaModificaPT(UtenteRegistrato autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
         super(autoreRichiesta, comune);
         this.dataApertura = dataApertura;
         this.dataChiusura = dataChiusura;
     }
 
-    public RichiestaModificaPeriodoTempo() {
+    public RichiestaModificaPT() {
 
     }
 
@@ -79,8 +79,8 @@ public class RichiestaModificaPeriodoTempo extends Richiesta {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
 
-        RichiestaModificaPeriodoTempo richiestaModificaPeriodoTempo = (RichiestaModificaPeriodoTempo) o;
-        return Objects.equals(poiTemporaneo, richiestaModificaPeriodoTempo.poiTemporaneo) && Objects.equals(dataApertura, richiestaModificaPeriodoTempo.dataApertura) && Objects.equals(dataChiusura, richiestaModificaPeriodoTempo.dataChiusura);
+        RichiestaModificaPT richiestaModificaPT = (RichiestaModificaPT) o;
+        return Objects.equals(poiTemporaneo, richiestaModificaPT.poiTemporaneo) && Objects.equals(dataApertura, richiestaModificaPT.dataApertura) && Objects.equals(dataChiusura, richiestaModificaPT.dataChiusura);
     }
 
     @Override
