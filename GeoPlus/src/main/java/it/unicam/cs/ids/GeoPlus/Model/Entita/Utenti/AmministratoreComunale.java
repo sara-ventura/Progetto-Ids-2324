@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti;
 
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.RuoliGestione;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
 import jakarta.persistence.Entity;
 
 /**
@@ -17,7 +17,7 @@ public class AmministratoreComunale extends UtenteRegistrato{
      * @param credenziali L'ID delle credenziali associate all'amministratore comunale.
      */
     public AmministratoreComunale(Long credenziali) {
-        super(RuoliGestione.AMMINISTRATORE_COMUNALE, credenziali);
+        super(Ruoli.AMMINISTRATORE_COMUNALE, credenziali);
     }
 
     public AmministratoreComunale() {

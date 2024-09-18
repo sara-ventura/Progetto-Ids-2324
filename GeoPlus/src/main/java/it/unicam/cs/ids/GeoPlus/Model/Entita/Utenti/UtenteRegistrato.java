@@ -14,27 +14,18 @@ import java.util.Objects;
 @Entity
 public class UtenteRegistrato {
 
-    /**
-     * Identificatore univoco dell'utente, generato automaticamente dal database.
-     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUtente;
 
-    /**
-     * Identificatore delle credenziali dell'utente.
-     */
+
     private Long idCredenziali;
 
-    /**
-     * Ruolo dell'utente, che definisce i permessi e le responsabilità.
-     */
+
     @Embedded
     private Ruoli ruoloUtente;
 
-    /**
-     * Comune di appartenenza dell'utente.
-     */
+
     @ManyToOne
     private Comune comuneAppartenenza;
 

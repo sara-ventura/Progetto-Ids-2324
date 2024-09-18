@@ -17,16 +17,11 @@ import java.util.Objects;
 @Entity
 public class UtenteStandard  extends UtenteRegistrato{
 
-    /**
-     * Lista di inviti ai contest ricevuti dall'utente.
-     */
+
     @OneToMany
     private List<InvitoContest> listaInvitiContest;
 
 
-    /**
-     * Lista dei contenuti salvati dall'utente.
-     */
     @OneToMany
     private List<Contenuto> listaContenutiSalvati;
 
