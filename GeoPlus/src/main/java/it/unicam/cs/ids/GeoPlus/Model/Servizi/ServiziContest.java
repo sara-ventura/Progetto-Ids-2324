@@ -14,8 +14,7 @@ import java.util.List;
 
 @Service
 public class ServiziContest {
-    @Autowired
-    private ServiziContest serviziContest;
+
 
     @Autowired
     private ContestRepository contestRepository;

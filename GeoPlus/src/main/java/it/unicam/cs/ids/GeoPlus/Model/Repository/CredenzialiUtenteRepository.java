@@ -16,6 +16,5 @@ import java.util.Optional;
 public interface CredenzialiUtenteRepository extends JpaRepository<CredenzialiUtente, Long> {
     Optional<CredenzialiUtente> findByEmail(String email);
 
-    Optional<CredenzialiUtente> findByIdUtente(long idUtente);
 
 }
