@@ -20,4 +20,6 @@ public interface PoiRepository extends JpaRepository<Poi, Long> {
     List<PoiTemporaneo> findAllTemporanei();
 
     Poi findByNomePoi(String nomePoi);
+
+    List<Poi> findAllByApprovatoAndNomePoi(boolean b, String nomePoi);
 }

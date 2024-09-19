@@ -38,6 +38,11 @@ public class ServiziComune {
         return repository.save(nuovoComune);
     }
 
+    public void salvaComune(Comune comune) {
+        repository.save(comune);
+    }
+
+
     public Comune getComune(Coordinate coordinate) {
         String nomeComune = sistemaOSM.getNomeComuneDaCoordinate(coordinate);
         return repository.findByNomeComune(nomeComune);
@@ -45,5 +50,9 @@ public class ServiziComune {
 
     public Comune getComune(String nome) {
         return repository.findByNomeComune(nome);
+    }
+
+    public Comune getComune(long idComune) {
+        return  repository.findById(idComune).orElse(null);
     }
 }

@@ -11,6 +11,7 @@ public abstract class EntitaRichiesta{
     private Long Id;
 
     private Long idAutore;
+    private boolean approvato;
 
     public Long getId() {
         return Id;
@@ -23,5 +24,13 @@ public abstract class EntitaRichiesta{
 
     public void setIdAutore(Long idAutore) {
         this.idAutore = idAutore;
+    }
+
+    public boolean isApprovato() {
+        return approvato;
+    }
+
+    public void setApprovato(boolean approvato) {
+        this.approvato = approvato;
     }
 }

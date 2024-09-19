@@ -6,10 +6,12 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.ComuniRepository;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.PoiRepository;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.PoiGiaEsistenteException;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
 import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -33,7 +35,7 @@ public class ServiziPoi {
             throw new ComuneNonTrovatoException("Comune non corrispondente alle coordinate fornite.");
         }
         if (verificaPosizione(posizionePoi)) {
-            throw new IllegalArgumentException("Esiste già un Poi nella nelle coordinate fornite");
+            throw new PoiGiaEsistenteException();
         }
         return new Poi(sistemaOSM.formattaNomeComune(nomePoi), descrizionePoi, posizionePoi);
     }
@@ -51,7 +53,8 @@ public class ServiziPoi {
 
 
     private boolean verificaPosizione(Coordinate posizionePoi) {
-        return getPoi(posizionePoi) != null;
+        Poi poi = getPoi(posizionePoi);
+        return (poi != null && poi.isApprovato());
     }
 
     public void salvaPoi(Poi poi, Comune comunePoi) {
@@ -66,14 +69,35 @@ public class ServiziPoi {
         comuniRepository.save(comunePoi);
     }
 
+    public void aggiornaPoi(Poi poi) {
+        this.poiRepository.save(poi);
+    }
+
     public Poi getPoi(Coordinate posizione) {
         return poiRepository.findByPosizionePoi(posizione);
     }
 
-    public List<Poi> getPois(String nomePoi) {
+    public List<Poi> getPoi(String nomePoi) {
         return poiRepository.findAllByNomePoi(nomePoi);
     }
 
+    public List<Poi> getPoiApprovati(String nomePoi) {
+        return poiRepository.findAllByApprovatoAndNomePoi(true, nomePoi);
+    }
+    public Poi getPoi(Long idPoi) {
+        return poiRepository.findById(idPoi).orElse(null);
+    }
+
+    public PoiTemporaneo getPoiTemporaneo(Long idPoi) {
+        List<PoiTemporaneo> poisTemporanei = poiRepository.findAllTemporanei();
+        for (PoiTemporaneo poiTemporaneo : poisTemporanei) {
+            if (poiTemporaneo.getId().equals(idPoi)) {
+                return poiTemporaneo;
+            }
+        }
+        return null;
+    }
+    @Scheduled(cron = "0 0 0 * * ?")
     public void rimuoviPoiTemporaneiScaduti() {
         List<PoiTemporaneo> poisTemporanei = poiRepository.findAllTemporanei();
         LocalDateTime oraCorrente = LocalDateTime.now();

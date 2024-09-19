@@ -1,8 +1,10 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Contest;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
-import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -22,24 +24,26 @@ public class Contest {
     private String regole;
     private boolean pubblico;
     @ManyToOne
-    private UtenteRegistrato autoreContest;
+    private UtenteStandard autoreContest;
     @OneToMany
-    private List<UtenteRegistrato> listaPartecipanti;
+    private List<UtenteStandard> listaPartecipanti;
     @OneToMany
     private List<Contenuto> listaContenuti;
     @Embedded
     private PeriodoTempo periodoTempo;
     @OneToOne
-    private UtenteRegistrato vincitoreContest;
+    private UtenteStandard vincitoreContest;
+    @ManyToMany
+    private List<Poi> riferimenti;
 
-
-    public Contest(String nomeContest, String descrizione, UtenteRegistrato autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo) {
+    public Contest(String nomeContest, String descrizione, UtenteStandard autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo, List<Poi> riferimenti) {
         this.nomeContest = nomeContest;
         this.descrizione = descrizione;
         this.autoreContest = autoreContest;
         this.regole = regole;
         this.pubblico = pubblico;
         this.periodoTempo = periodoTempo;
+        this.riferimenti = riferimenti;
         this.listaPartecipanti = new ArrayList<>();
         this.listaContenuti = new ArrayList<>();
     }
@@ -92,28 +96,27 @@ public class Contest {
     }
 
 
-    public boolean aggiungiContenutoContest(Contenuto contenuto) {
+    public void aggiungiContenutoContest(Contenuto contenuto) {
         if (!listaContenuti.contains(contenuto)) {
-            return this.listaContenuti.add(contenuto);
-        } else return false;
-    }
-
-
-    public boolean rimuoviContenutoContest(Contenuto contenuto) {
-        return this.listaContenuti.remove(contenuto);
-    }
-
-
-    public boolean aggiungiPartecipanteContest(UtenteRegistrato partecipante) {
-        if (!listaPartecipanti.contains(partecipante)) {
-            return this.listaPartecipanti.add(partecipante);
+            this.listaContenuti.add(contenuto);
         }
-        return false;
     }
 
 
-    public boolean rimuoviPartecipanteContest(UtenteRegistrato partecipante) {
-        return this.listaPartecipanti.remove(partecipante);
+    public void rimuoviContenutoContest(Contenuto contenuto) {
+        this.listaContenuti.remove(contenuto);
+    }
+
+
+    public void aggiungiPartecipanteContest(UtenteStandard partecipante) {
+        if (!listaPartecipanti.contains(partecipante)) {
+            this.listaPartecipanti.add(partecipante);
+        }
+    }
+
+
+    public void rimuoviPartecipanteContest(UtenteStandard partecipante) {
+        this.listaPartecipanti.remove(partecipante);
     }
 
 
@@ -125,7 +128,7 @@ public class Contest {
         this.periodoTempo = periodoTempo;
     }
 
-    public List<UtenteRegistrato> getListaPartecipanti() {
+    public List<UtenteStandard> getListaPartecipanti() {
         return listaPartecipanti;
     }
 
@@ -133,15 +136,20 @@ public class Contest {
         return listaContenuti;
     }
 
-    public UtenteRegistrato getVincitoreContest() {
+    public UtenteStandard getVincitoreContest() {
         return vincitoreContest;
     }
 
-    public void setVincitoreContest(UtenteRegistrato vincitoreContest) {
+    public void setVincitoreContest(UtenteStandard vincitoreContest) {
         this.vincitoreContest = vincitoreContest;
     }
 
-
+    public boolean isUtentePartecipante(UtenteStandard partecipante) {
+        return listaPartecipanti.contains(partecipante);
+    }
+    public List<Poi> getRiferimenti() {
+        return riferimenti;
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -154,8 +162,11 @@ public class Contest {
                 Objects.equals(regole, contest.regole) &&
                 Objects.equals(autoreContest, contest.autoreContest);
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(idContest, nomeContest, descrizione, regole, pubblico, autoreContest);
     }
+
+
 }
