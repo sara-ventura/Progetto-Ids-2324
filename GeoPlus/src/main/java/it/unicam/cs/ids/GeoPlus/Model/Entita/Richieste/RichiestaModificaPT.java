@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
@@ -37,7 +38,7 @@ public class RichiestaModificaPT extends Richiesta {
      * @param dataChiusura    la data e l'ora di chiusura proposte
      */
 
-    public RichiestaModificaPT(UtenteRegistrato autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
+    public RichiestaModificaPT(UtenteStandard autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
         super(autoreRichiesta, comune);
         this.dataApertura = dataApertura;
         this.dataChiusura = dataChiusura;

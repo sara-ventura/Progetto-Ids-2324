@@ -4,6 +4,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
@@ -35,7 +36,7 @@ public class RichiestaModificaTestoIt extends RichiestaModificaTesto {
      * @param modificaTesto   il testo della modifica proposto
      */
 
-    public RichiestaModificaTestoIt(UtenteRegistrato autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTestoIt(UtenteStandard autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
         this.itinerario = itinerario;
     }

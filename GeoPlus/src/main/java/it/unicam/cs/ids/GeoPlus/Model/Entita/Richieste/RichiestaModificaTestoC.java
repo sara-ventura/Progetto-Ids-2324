@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
@@ -34,7 +35,7 @@ public class RichiestaModificaTestoC extends RichiestaModificaTesto {
      * @param modificaTesto   il testo della modifica proposto
      */
 
-    public RichiestaModificaTestoC(UtenteRegistrato autoreRichiesta, Comune comune, Contenuto contenuto, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTestoC(UtenteStandard autoreRichiesta, Comune comune, Contenuto contenuto, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
       this.contenuto = contenuto;
 

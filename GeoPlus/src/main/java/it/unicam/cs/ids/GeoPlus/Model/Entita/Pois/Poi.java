@@ -77,13 +77,13 @@ public class Poi extends EntitaRichiesta {
     }
 
 
-    public boolean aggiungiContenuto(Contenuto contenuto) {
-        return this.contenutiAssociati.add(contenuto);
+    public void aggiungiContenuto(Contenuto contenuto) {
+        this.contenutiAssociati.add(contenuto);
     }
 
 
-    public boolean rimuoviContenuto(Contenuto contenuto) {
-        return this.contenutiAssociati.remove(contenuto);
+    public void rimuoviContenuto(Contenuto contenuto) {
+        this.contenutiAssociati.remove(contenuto);
     }
 
 

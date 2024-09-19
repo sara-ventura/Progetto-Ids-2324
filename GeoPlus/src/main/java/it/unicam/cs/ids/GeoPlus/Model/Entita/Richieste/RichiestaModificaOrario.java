@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
@@ -18,7 +19,7 @@ public class RichiestaModificaOrario extends Richiesta {
     private LocalTime orarioApertura;
     private LocalTime orarioChiusura;
 
-    public RichiestaModificaOrario(UtenteRegistrato autoreRichiesta, Comune comune, Poi poi, int giorno, LocalTime orarioApertura, LocalTime orarioChiusura) {
+    public RichiestaModificaOrario(UtenteStandard autoreRichiesta, Comune comune, Poi poi, int giorno, LocalTime orarioApertura, LocalTime orarioChiusura) {
         super(autoreRichiesta, comune);
         this.giorno = giorno;
         this.orarioApertura = orarioApertura;

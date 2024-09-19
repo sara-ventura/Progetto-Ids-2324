@@ -2,6 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 
@@ -30,7 +31,7 @@ public abstract class RichiestaModificaTesto extends Richiesta {
      * @param tipoModifica    il tipo di modifica
      */
 
-    public RichiestaModificaTesto(UtenteRegistrato autoreRichiesta, Comune comune, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTesto(UtenteStandard autoreRichiesta, Comune comune, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune);
         this.modificaTesto = modificaTesto;
         this.tipoModifica = tipoModifica;

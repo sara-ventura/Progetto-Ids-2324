@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 
@@ -14,7 +15,7 @@ public class Itinerario extends EntitaRichiesta {
 
     private String nomeItinerario;
     private String descrizioneItinerario;
-    @OneToMany
+    @ManyToMany
     private List<Poi> listaPoi;
     @ManyToOne
     private Comune comune;

@@ -81,7 +81,7 @@ public class Contest {
     }
 
 
-    public UtenteRegistrato getAutoreContest() {
+    public UtenteStandard getAutoreContest() {
         return this.autoreContest;
     }
 
