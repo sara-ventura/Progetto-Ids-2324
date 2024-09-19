@@ -45,7 +45,7 @@ public class Itinerario extends EntitaRichiesta {
     }
 
 
-    private void setDescrizioneItinerario(String descrizioneItinerario) {
+    public void setDescrizioneItinerario(String descrizioneItinerario) {
         this.descrizioneItinerario = descrizioneItinerario;
     }
 

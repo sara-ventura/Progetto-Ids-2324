@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -21,7 +22,7 @@ public abstract class Richiesta {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long RichiestaId;
     @ManyToOne
-    private UtenteRegistrato autoreRichiesta;
+    private UtenteStandard autoreRichiesta;
     @ManyToOne
     private Comune comune;
 
@@ -36,7 +37,7 @@ public abstract class Richiesta {
      * @param comune          il comune associato alla richiesta
      */
 
-    public Richiesta(UtenteRegistrato autoreRichiesta, Comune comune) {
+    public Richiesta(UtenteStandard autoreRichiesta, Comune comune) {
         this.autoreRichiesta = autoreRichiesta;
         this.comune = comune;
     }
@@ -47,7 +48,7 @@ public abstract class Richiesta {
      * @return l'autore della richiesta
      */
 
-    public UtenteRegistrato getAutoreRichiesta() {
+    public UtenteStandard getAutoreRichiesta() {
         return autoreRichiesta;
     }
 

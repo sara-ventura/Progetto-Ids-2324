@@ -2,7 +2,6 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.Builder;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contest.Contest;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaCaricamentoContenutoContest;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaSuContest;
 import org.springframework.stereotype.Component;
 
