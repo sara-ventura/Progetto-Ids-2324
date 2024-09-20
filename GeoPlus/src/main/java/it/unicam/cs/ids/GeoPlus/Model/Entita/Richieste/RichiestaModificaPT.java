@@ -40,6 +40,7 @@ public class RichiestaModificaPT extends Richiesta {
 
     public RichiestaModificaPT(UtenteStandard autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
         super(autoreRichiesta, comune);
+        this.poiTemporaneo = poiTemporaneo;
         this.dataApertura = dataApertura;
         this.dataChiusura = dataChiusura;
     }

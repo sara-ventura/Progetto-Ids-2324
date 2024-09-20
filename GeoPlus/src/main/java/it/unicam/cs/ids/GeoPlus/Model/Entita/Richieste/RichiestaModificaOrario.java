@@ -21,6 +21,7 @@ public class RichiestaModificaOrario extends Richiesta {
 
     public RichiestaModificaOrario(UtenteStandard autoreRichiesta, Comune comune, Poi poi, int giorno, LocalTime orarioApertura, LocalTime orarioChiusura) {
         super(autoreRichiesta, comune);
+        this.poi = poi;
         this.giorno = giorno;
         this.orarioApertura = orarioApertura;
         this.orarioChiusura = orarioChiusura;
