@@ -8,7 +8,7 @@ import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+
 /**
  * Rappresenta un utente standard nel sistema GeoPlus.
  * Un utente standard ha un ruolo, un comune di appartenenza, e può salvare o condividere contenuti,
@@ -55,7 +55,7 @@ public class UtenteStandard  extends UtenteRegistrato{
      *
      * @return La lista di {@link Contenuto}.
      */
-    public List<Contenuto> getListaInvitoContest() {
+    public List<Contenuto> getListaContenutiSalvati() {
         return listaContenutiSalvati;
     }
 
