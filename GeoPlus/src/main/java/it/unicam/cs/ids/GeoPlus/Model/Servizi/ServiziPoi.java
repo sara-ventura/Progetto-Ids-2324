@@ -29,7 +29,7 @@ public class ServiziPoi {
     @Autowired
     private SistemaOSM sistemaOSM;
 
-    public Poi creaPoi(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi) throws ComuneNonTrovatoException {
+    public Poi creaPoiTemporaneo(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi) throws ComuneNonTrovatoException {
         boolean corrispondenza = sistemaOSM.contieneCoordinate(posizionePoi, comunePoi.getNomeComune());
         if (!corrispondenza) {
             throw new ComuneNonTrovatoException("Comune non corrispondente alle coordinate fornite.");
@@ -40,13 +40,13 @@ public class ServiziPoi {
         return new Poi(sistemaOSM.formattaNomeComune(nomePoi), descrizionePoi, posizionePoi);
     }
 
-    public PoiTemporaneo creaPoi(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi, PeriodoTempo periodoTempo) throws ComuneNonTrovatoException {
+    public PoiTemporaneo creaPoiTemporaneo(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi, PeriodoTempo periodoTempo) throws ComuneNonTrovatoException {
         boolean corrispondenza = sistemaOSM.contieneCoordinate(posizionePoi, comunePoi.getNomeComune());
         if (!corrispondenza) {
             throw new ComuneNonTrovatoException("Comune non corrispondente alle coordinate fornite.");
         }
         if (verificaPosizione(posizionePoi)) {
-            throw new IllegalArgumentException("Esiste già un Poi nella nelle coordinate fornite");
+            throw new PoiGiaEsistenteException();
         }
         return new PoiTemporaneo(sistemaOSM.formattaNomeComune(nomePoi), descrizionePoi, posizionePoi, periodoTempo);
     }

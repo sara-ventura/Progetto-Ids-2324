@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Pois;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.EntitaRichiesta;
@@ -23,7 +24,7 @@ public class Poi extends EntitaRichiesta {
     private Coordinate posizionePoi;
     @Embedded
     private Orari orariPoi;
-    @OneToMany
+    @OneToMany@JsonManagedReference
     private List<Contenuto> contenutiAssociati;
 
 

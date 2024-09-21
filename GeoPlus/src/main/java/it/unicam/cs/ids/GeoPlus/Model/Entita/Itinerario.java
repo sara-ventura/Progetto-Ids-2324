@@ -1,13 +1,16 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Objects;
 
 
 @Entity
@@ -18,6 +21,7 @@ public class Itinerario extends EntitaRichiesta {
     @ManyToMany
     private List<Poi> listaPoi;
     @ManyToOne
+    @JsonBackReference
     private Comune comune;
 
 
@@ -90,6 +94,7 @@ public class Itinerario extends EntitaRichiesta {
         double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
         return R * c;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

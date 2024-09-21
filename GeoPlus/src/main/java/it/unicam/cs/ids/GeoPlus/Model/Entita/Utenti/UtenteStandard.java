@@ -63,13 +63,11 @@ public class UtenteStandard  extends UtenteRegistrato{
      * Aggiunge un invito contest alla lista degli inviti, se non già presente.
      *
      * @param invitoContest L'invito contest da aggiungere.
-     * @return {@code true} se l'invito è stato aggiunto correttamente,
-     *         {@code false} se l'invito era già presente.
      */
-    public boolean aggiungiInvitoContest(InvitoContest invitoContest) {
+    public void aggiungiInvitoContest(InvitoContest invitoContest) {
         if (!listaInvitiContest.contains(invitoContest)) {
-            return listaInvitiContest.add(invitoContest);
-        } else return false;
+            listaInvitiContest.add(invitoContest);
+        }
     }
 
     /**

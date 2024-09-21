@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import jakarta.persistence.*;
@@ -18,7 +19,7 @@ public class Comune {
     private String descrizione;
     @OneToMany
     private List<Poi> listaPoi;
-    @OneToMany
+    @OneToMany @JsonManagedReference
     private List<Itinerario> listaItinerari;
     @Embedded
     private Coordinate coordinateCentrali;

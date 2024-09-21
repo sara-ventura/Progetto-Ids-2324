@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Controller;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,7 +23,7 @@ public class ControllerUtentiRegistrati {
 
     @PostMapping("/assegnaRuolo/{idCuratore}/{idUtente}")
     public ResponseEntity<String> asseganRuoloUtente(@PathVariable long idCuratore, @PathVariable long idUtente, @Valid @RequestParam Ruoli ruolo) {
-        UtenteRegistrato utente = serviziUtenteRegistrato.getUtente(idUtente);
+        UtenteStandard utente = serviziUtenteRegistrato.getUtenteStandard(idUtente);
         UtenteRegistrato curatore = serviziUtenteRegistrato.getUtente(idCuratore);
         if (Objects.isNull(utente)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
@@ -35,9 +36,9 @@ public class ControllerUtentiRegistrati {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("L'utente non appartiene al comune");
     }
 
-    @GetMapping("/listaUtentiComune/{idCuratore}")
-    public ResponseEntity<List<UtenteRegistrato>> ottieniListaUtentiComune(@PathVariable long idCuratore) {
-        UtenteRegistrato utente = serviziUtenteRegistrato.getUtente(idCuratore);
+    @GetMapping("/listaUtentiComune/{idAmministratore}")
+    public ResponseEntity<List<UtenteRegistrato>> ottieniListaUtentiComune(@PathVariable long idAmministratore) {
+        UtenteRegistrato utente = serviziUtenteRegistrato.getUtente(idAmministratore);
         if (verificaCuratore(utente)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
@@ -49,7 +50,7 @@ public class ControllerUtentiRegistrati {
     }
 
     private boolean verificaCuratore(UtenteRegistrato utente) {
-        return !Objects.equals(utente.getRuoloUtente(), Ruoli.CURATORE);
+        return !Objects.equals(utente.getRuoloUtente(), Ruoli.AMMINISTRATORE_COMUNALE);
     }
 
 }

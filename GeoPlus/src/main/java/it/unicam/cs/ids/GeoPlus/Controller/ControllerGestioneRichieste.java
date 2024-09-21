@@ -31,7 +31,7 @@ public class ControllerGestioneRichieste {
     @PostMapping("/accettaRichiesta/{idCuratore}/{idRichiesta}")
     public ResponseEntity<String> accettaRichiesta(@PathVariable Long idCuratore, @PathVariable Long idRichiesta) {
         validateCuratore(idCuratore);
-        validateRichiesta(idRichiesta);
+        validaRichiesta(idRichiesta);
         Richiesta richiesta = serviziRichieste.getRichiesta(idRichiesta);
         gestoreRichieste.approvaRichiesta(richiesta);
         return new ResponseEntity<>("Richiesta accettata con successo", HttpStatus.OK);
@@ -40,7 +40,7 @@ public class ControllerGestioneRichieste {
     @PostMapping("/rifiutaRichiesta/{idCuratore}/{idRichiesta}")
     public ResponseEntity<String> rifiutaRichiesta(@PathVariable Long idCuratore, @PathVariable Long idRichiesta) {
         validateCuratore(idCuratore);
-        validateRichiesta(idRichiesta);
+        validaRichiesta(idRichiesta);
         Richiesta richiesta = serviziRichieste.getRichiesta(idRichiesta);
         gestoreRichieste.rifiutaRichiesta(richiesta);
         return new ResponseEntity<>("Richiesta rifiutata con successo", HttpStatus.OK);
@@ -70,7 +70,7 @@ public class ControllerGestioneRichieste {
         return curatore;
     }
 
-    private void validateRichiesta(Long idRichiesta) {
+    private void validaRichiesta(Long idRichiesta) {
         Richiesta richiesta = serviziRichieste.getRichiesta(idRichiesta);
         if (richiesta == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Richiesta non trovata");

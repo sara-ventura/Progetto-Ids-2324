@@ -22,7 +22,7 @@ public class UtenteRegistrato {
     private Long idCredenziali;
 
 
-    @Embedded
+    @Enumerated(EnumType.STRING)
     private Ruoli ruoloUtente;
 
 

@@ -33,7 +33,7 @@ public class ServiziPoiTest {
     @Test
     public void testCreaPoi() {
         Comune comune = serviziComune.creaComune("Napoli", "pizza", new Coordinate(40.8518, 14.2681));
-        Poi poi = serviziPoi.creaPoi("Statua", "bella statua", new Coordinate(40.8517, 14.2681), comune);
+        Poi poi = serviziPoi.creaPoiTemporaneo("Statua", "bella statua", new Coordinate(40.8517, 14.2681), comune);
         assertNotNull(poi);
 
     }
@@ -42,7 +42,7 @@ public class ServiziPoiTest {
     @Transactional
     public void testCreaPoiTemporaneo() {
         Comune comune = serviziComune.creaComune("Napoli", "pizza", new Coordinate(40.8518, 14.2681));
-        PoiTemporaneo poi = serviziPoi.creaPoi("Fiera", "fiera della pizza", new Coordinate(40.8515, 14.2680), comune, new PeriodoTempo());
+        PoiTemporaneo poi = serviziPoi.creaPoiTemporaneo("Fiera", "fiera della pizza", new Coordinate(40.8515, 14.2680), comune, new PeriodoTempo());
         assertNotNull(poi);
     }
 
@@ -50,7 +50,7 @@ public class ServiziPoiTest {
     @Transactional
     public void testSalvaPoi() {
         Comune comune = serviziComune.creaComune("Napoli", "pizza", new Coordinate(40.8518, 14.2681));
-        Poi poi = serviziPoi.creaPoi("Statua", "bella statua", new Coordinate(40.8518, 14.2681), comune);
+        Poi poi = serviziPoi.creaPoiTemporaneo("Statua", "bella statua", new Coordinate(40.8518, 14.2681), comune);
         serviziPoi.salvaPoi(poi, comune);
         assertEquals(comune.getPoiAssociati().getFirst(), poi);
         assertNotNull(serviziPoi.getPoi(poi.getPosizionePoi()));
@@ -60,7 +60,7 @@ public class ServiziPoiTest {
     @Transactional
     public void testEliminaPoi() {
         Comune comune = serviziComune.creaComune("Napoli", "pizza", new Coordinate(40.8518, 14.2681));
-        Poi poi = serviziPoi.creaPoi("Statua", "bella statua", new Coordinate(40.8517, 14.2681), comune);
+        Poi poi = serviziPoi.creaPoiTemporaneo("Statua", "bella statua", new Coordinate(40.8517, 14.2681), comune);
         assertNotNull(poi);
         serviziPoi.eliminaPoi(poi, comune);
         assertTrue(comune.getPoiAssociati().isEmpty());

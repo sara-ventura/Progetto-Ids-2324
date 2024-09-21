@@ -1,11 +1,11 @@
 package it.unicam.cs.ids.GeoPlus.Model.Servizi;
 
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.AmministratoreComunale;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.CredenzialiUtente;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.AmministratoreComunale;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.UtenteRegistratoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +30,9 @@ public class ServiziUtenteRegistrato {
     /**
      * Registra un nuovo utente non autorizzato, assegnando email, password e ruolo.
      *
-     * @param email l'email dell'utente.
+     * @param email    l'email dell'utente.
      * @param password la password dell'utente.
-     * @param ruolo il ruolo dell'utente.
+     * @param ruolo    il ruolo dell'utente.
      * @return l'istanza di {@link UtenteStandard} appena registrato.
      */
     public UtenteStandard registraNuovoUtenteNonAutorizzato(String email, String password, Ruoli ruolo) {
@@ -44,10 +44,10 @@ public class ServiziUtenteRegistrato {
     /**
      * Registra un nuovo utente autorizzato, assegnando email, password, ruolo e comune di appartenenza.
      *
-     * @param email l'email dell'utente.
+     * @param email    l'email dell'utente.
      * @param password la password dell'utente.
-     * @param ruolo il ruolo dell'utente.
-     * @param comune il comune di appartenenza dell'utente.
+     * @param ruolo    il ruolo dell'utente.
+     * @param comune   il comune di appartenenza dell'utente.
      * @return l'istanza di {@link UtenteStandard} appena registrato.
      */
     public UtenteStandard registraNuovoUtenteAutorizzato(String email, String password, Ruoli ruolo, Comune comune) {
@@ -60,7 +60,7 @@ public class ServiziUtenteRegistrato {
     /**
      * Registra un nuovo amministratore comunale con email e password.
      *
-     * @param email l'email dell'amministratore.
+     * @param email    l'email dell'amministratore.
      * @param password la password dell'amministratore.
      * @return l'istanza di {@link AmministratoreComunale} appena registrato.
      */
@@ -73,7 +73,7 @@ public class ServiziUtenteRegistrato {
     /**
      * Effettua il login di un utente verificando email e password.
      *
-     * @param email l'email dell'utente.
+     * @param email    l'email dell'utente.
      * @param password la password dell'utente.
      * @return {@code true} se il login ha successo, {@code false} altrimenti.
      */
@@ -123,6 +123,15 @@ public class ServiziUtenteRegistrato {
         return utenteRegistratoRepository.findAllStandard();
     }
 
+    /**
+     * Restituisce un utente dato il suo ID.
+     *
+     * @param id l'ID dell'utente.
+     * @return l'utente standard, se trovato.
+     */
+    public UtenteRegistrato getUtente(Long id) {
+        return utenteRegistratoRepository.findById(id).orElse(null);
+    }
 
     /**
      * Restituisce un utente standard dato il suo ID.
@@ -131,7 +140,7 @@ public class ServiziUtenteRegistrato {
      * @return l'utente standard, se trovato.
      * @throws RuntimeException se l'utente non è trovato o non è un utente standard.
      */
-    public UtenteStandard getUtente(Long id) {
+    public UtenteStandard getUtenteStandard(Long id) {
         List<UtenteStandard> utentiStandard = utenteRegistratoRepository.findAllStandard();
         return utentiStandard.stream()
                 .filter(utente -> utente.getIdUtente().equals(id))

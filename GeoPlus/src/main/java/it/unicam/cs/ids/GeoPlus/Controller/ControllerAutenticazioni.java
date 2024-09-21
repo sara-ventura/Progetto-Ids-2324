@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+
 @RestController
 @RequestMapping("/autenticazioni")
 public class ControllerAutenticazioni {
@@ -59,12 +60,12 @@ public class ControllerAutenticazioni {
     }
 
     @PostMapping("/registrazione/amministratore")
-    public ResponseEntity<String> registerAdminAndCreateComune(@Valid @RequestBody RichiestaRegistrazioneAmministratore request) {
-        String email = request.getEmail();
-        String password = request.getPassword();
-        String nomeComune = request.getNomeComune();
-        String descrizione = request.getDescrizione();
-        Coordinate coordinateCentrali = request.getCoordinateCentrali();
+    public ResponseEntity<String> registraAmministratoreECreaComune(@Valid @RequestBody RichiestaRegistrazioneAmministratore richiestaRegistrazioneAmministratore) {
+        String email = richiestaRegistrazioneAmministratore.getEmail();
+        String password = richiestaRegistrazioneAmministratore.getPassword();
+        String nomeComune = richiestaRegistrazioneAmministratore.getNomeComune();
+        String descrizione = richiestaRegistrazioneAmministratore.getDescrizione();
+        Coordinate coordinateCentrali = richiestaRegistrazioneAmministratore.getCoordinateCentrali();
         AmministratoreComunale nuovoAmministratore = serviziUtenteRegistrato.registraNuovoAmministratoreComunale(email, password);
         Comune comune = serviziComune.creaComune(nomeComune, descrizione, coordinateCentrali);
         nuovoAmministratore.setComuneAppartenenza(comune);

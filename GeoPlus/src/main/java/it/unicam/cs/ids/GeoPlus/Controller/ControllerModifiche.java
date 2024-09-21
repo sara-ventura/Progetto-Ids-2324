@@ -44,7 +44,7 @@ public class ControllerModifiche {
         if (poi == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtente(richiesteModificaTestoBody.getAutoreRichiestaId());
+        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiesteModificaTestoBody.getAutoreRichiestaId());
         validateUtente(autoreRichiesta);
         if (poi.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
@@ -69,7 +69,7 @@ public class ControllerModifiche {
         if (itinerario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("itinerario non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtente(richiesteModificaTestoBody.getAutoreRichiestaId());
+        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiesteModificaTestoBody.getAutoreRichiestaId());
         validateUtente(autoreRichiesta);
         if (itinerario.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
@@ -95,7 +95,7 @@ public class ControllerModifiche {
         if (contenuto == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("contenuto non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtente(richiesteModificaTestoBody.getAutoreRichiestaId());
+        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiesteModificaTestoBody.getAutoreRichiestaId());
         validateUtente(autoreRichiesta);
         if (contenuto.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
@@ -116,7 +116,7 @@ public class ControllerModifiche {
         if (poi == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtente(richiestaModificaOrarioBody.getAutoreRichiestaId());
+        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiestaModificaOrarioBody.getAutoreRichiestaId());
         validateUtente(autoreRichiesta);
         if (poi.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
@@ -137,7 +137,7 @@ public class ControllerModifiche {
         if (poiTemporaneo == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi temporaneo non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtente(richiestaModificaPeriodoTempoBody.getAutoreRichiestaId());
+        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiestaModificaPeriodoTempoBody.getAutoreRichiestaId());
         validateUtente(autoreRichiesta);
         if (poiTemporaneo.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
