@@ -30,7 +30,7 @@ public class ControllerGestioneSegnalazioni {
 
     @PostMapping("/accetta/{segnalazioneId}/{curatoreId}")
     public ResponseEntity<String> accettaSegnalazione(@PathVariable long segnalazioneId, @PathVariable long curatoreId) {
-        UtenteRegistrato utente = serviziUtente.getUtente(curatoreId);
+        UtenteRegistrato utente = serviziUtente.getUtenteStandard(curatoreId);
         if (verificaCuratore(utente)) {
             return new ResponseEntity<>("L'utente non è autorizzato", HttpStatus.FORBIDDEN);
         }
@@ -44,7 +44,7 @@ public class ControllerGestioneSegnalazioni {
 
     @PostMapping("/rifiuta/{segnalazioneId}/{curatoreId}")
     public ResponseEntity<String> rifiutaSegnalazione(@PathVariable long segnalazioneId, @PathVariable long curatoreId) {
-        UtenteRegistrato utente = serviziUtente.getUtente(curatoreId);
+        UtenteRegistrato utente = serviziUtente.getUtenteStandard(curatoreId);
         if (verificaCuratore(utente)) {
             return new ResponseEntity<>("L'utente non è autorizzato", HttpStatus.FORBIDDEN);
         }
@@ -58,7 +58,7 @@ public class ControllerGestioneSegnalazioni {
 
     @GetMapping("/listaSegnalazioniComune/{comuneId}/{curatoreId}")
     public ResponseEntity<List<Segnalazione>> ottieniSegnalazioniComune(@PathVariable long comuneId, @PathVariable long curatoreId) {
-        UtenteRegistrato utente = serviziUtente.getUtente(curatoreId);
+        UtenteRegistrato utente = serviziUtente.getUtenteStandard(curatoreId);
         if (verificaCuratore(utente)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }

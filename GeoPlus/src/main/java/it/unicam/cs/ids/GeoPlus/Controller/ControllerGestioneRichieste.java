@@ -55,7 +55,7 @@ public class ControllerGestioneRichieste {
     }
 
     private UtenteRegistrato validateCuratore(Long idCuratore) {
-        UtenteRegistrato curatore = serviziUtenteRegistrato.getUtente(idCuratore);
+        UtenteRegistrato curatore = serviziUtenteRegistrato.getUtenteStandard(idCuratore);
         if (curatore == null) {
             System.out.println("Utente non trovato");
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato");

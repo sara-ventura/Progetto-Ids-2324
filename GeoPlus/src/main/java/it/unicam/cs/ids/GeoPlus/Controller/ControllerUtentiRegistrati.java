@@ -24,7 +24,7 @@ public class ControllerUtentiRegistrati {
     @PostMapping("/assegnaRuolo/{idCuratore}/{idUtente}")
     public ResponseEntity<String> asseganRuoloUtente(@PathVariable long idCuratore, @PathVariable long idUtente, @Valid @RequestParam Ruoli ruolo) {
         UtenteStandard utente = serviziUtenteRegistrato.getUtenteStandard(idUtente);
-        UtenteRegistrato curatore = serviziUtenteRegistrato.getUtente(idCuratore);
+        UtenteRegistrato curatore = serviziUtenteRegistrato.getUtenteStandard(idCuratore);
         if (Objects.isNull(utente)) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
@@ -38,7 +38,7 @@ public class ControllerUtentiRegistrati {
 
     @GetMapping("/listaUtentiComune/{idAmministratore}")
     public ResponseEntity<List<UtenteRegistrato>> ottieniListaUtentiComune(@PathVariable long idAmministratore) {
-        UtenteRegistrato utente = serviziUtenteRegistrato.getUtente(idAmministratore);
+        UtenteRegistrato utente = serviziUtenteRegistrato.getUtenteStandard(idAmministratore);
         if (verificaCuratore(utente)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }

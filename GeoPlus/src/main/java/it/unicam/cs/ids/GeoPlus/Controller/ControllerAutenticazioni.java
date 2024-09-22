@@ -3,6 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Controller;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.AmministratoreComunale;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziComune;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
@@ -51,12 +52,8 @@ public class ControllerAutenticazioni {
 
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@Valid @RequestBody RichiestaLogin richiestaLogin) {
-        Boolean success = serviziUtenteRegistrato.loginUtente(richiestaLogin.getEmail(), richiestaLogin.getPassword());
-        if (!success) {
-            return ResponseEntity.ok("Login effettuato con successo");
-        }
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Credenziali errate.");
+    public ResponseEntity<UtenteRegistrato> loginUser(@Valid @RequestBody RichiestaLogin richiestaLogin) {
+        return ResponseEntity.ok(serviziUtenteRegistrato.loginUtente(richiestaLogin.getEmail(), richiestaLogin.getPassword()));
     }
 
     @PostMapping("/registrazione/amministratore")

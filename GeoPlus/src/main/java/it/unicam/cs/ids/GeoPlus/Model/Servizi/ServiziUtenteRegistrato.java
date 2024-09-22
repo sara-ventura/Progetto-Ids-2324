@@ -77,13 +77,16 @@ public class ServiziUtenteRegistrato {
      * @param password la password dell'utente.
      * @return {@code true} se il login ha successo, {@code false} altrimenti.
      */
-    public Boolean loginUtente(String email, String password) {
+    public UtenteRegistrato  loginUtente(String email, String password) {
         CredenzialiUtente credenziali = serviziCredenziali.getCredenziali(email);
         if (credenziali == null) {
-            return false;
+            throw new IllegalArgumentException("Credenziali non trovate");
+
         }
-        return serviziCredenziali.verificaPassword(password, credenziali.getIdCredenziali());
-    }
+        if (serviziCredenziali.verificaPassword(password, credenziali.getIdCredenziali())) {
+            return getUtente(email);
+        }
+        throw new IllegalArgumentException("Password errata");    }
 
     /**
      * Salva un utente registrato nel repository.
@@ -104,15 +107,6 @@ public class ServiziUtenteRegistrato {
         utenteRegistratoRepository.delete(utente);
     }
 
-    /**
-     * Restituisce l'utente registrato associato a una determinata email.
-     *
-     * @param email l'email dell'utente.
-     * @return l'utente registrato, o {@code null} se non trovato.
-     */
-    public UtenteRegistrato getUtente(String email) {
-        return utenteRegistratoRepository.findByIdCredenziali(serviziCredenziali.getCredenziali(email).getIdCredenziali());
-    }
 
     /**
      * Restituisce la lista di tutti gli utenti standard presenti nel sistema.
@@ -121,6 +115,16 @@ public class ServiziUtenteRegistrato {
      */
     public List<UtenteStandard> getAllUtentiStandard() {
         return utenteRegistratoRepository.findAllStandard();
+    }
+
+    /**
+     * Restituisce l'utente a cui è associata la mail passata come parametro.
+     * @param email dell'utente.
+     *
+     * @return l'utente associato alla mail.
+     */
+    public UtenteRegistrato getUtente(String email) {
+        return utenteRegistratoRepository.findByIdCredenziali(serviziCredenziali.getCredenziali(email).getIdCredenziali());
     }
 
 
