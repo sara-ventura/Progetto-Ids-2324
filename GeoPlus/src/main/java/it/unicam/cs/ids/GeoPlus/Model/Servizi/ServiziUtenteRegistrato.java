@@ -123,15 +123,6 @@ public class ServiziUtenteRegistrato {
         return utenteRegistratoRepository.findAllStandard();
     }
 
-    /**
-     * Restituisce un utente dato il suo ID.
-     *
-     * @param id l'ID dell'utente.
-     * @return l'utente standard, se trovato.
-     */
-    public UtenteRegistrato getUtente(Long id) {
-        return utenteRegistratoRepository.findById(id).orElse(null);
-    }
 
     /**
      * Restituisce un utente standard dato il suo ID.
