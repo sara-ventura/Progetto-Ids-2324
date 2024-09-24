@@ -34,7 +34,7 @@ public class ServiziContest {
     public void creaContest(String nomeContest, String descrizione, UtenteStandard autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo, List<Poi> riferimenti) {
         Comune comuneBase = serviziComune.getComune(riferimenti.getFirst().getPosizionePoi());
         if (!Objects.equals(comuneBase.getIdComune(), autoreContest.getComuneAppartenenza().getIdComune())) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Un animatore non può creare contest con riferimenti fuori dal comune");
         }
         for (Poi poi : riferimenti) {
             Comune comuneCorrente = serviziComune.getComune(poi.getPosizionePoi());

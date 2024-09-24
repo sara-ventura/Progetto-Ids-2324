@@ -1,6 +1,10 @@
 package it.unicam.cs.ids.GeoPlus.Controller;
 
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.*;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneNonTrovatoException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneGiaEsistenteException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.EmailGiaUtilizzata;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.NomeComuneIncompatibileException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.PoiGiaEsistenteException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

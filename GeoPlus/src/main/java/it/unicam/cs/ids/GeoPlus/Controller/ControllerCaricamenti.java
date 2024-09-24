@@ -41,7 +41,7 @@ public class ControllerCaricamenti {
     public ResponseEntity<String> creaPoi(@Valid @RequestBody PoiBody poiBody) {
         Coordinate posizionePoi = poiBody.getPosizionePoi();
         Comune comunePoi = serviziComune.getComune(posizionePoi);
-        Poi poi = serviziPoi.creaPoiTemporaneo(poiBody.getNomePoi(), poiBody.getDescrizionePoi(), posizionePoi, comunePoi);
+        Poi poi = serviziPoi.creaPoi(poiBody.getNomePoi(), poiBody.getDescrizionePoi(), posizionePoi, comunePoi);
         UtenteStandard autoreCaricamento = serviziUtenteRegistrato.getUtenteStandard(poiBody.getIdAutoreCaricamento());
         poi.setIdAutore(autoreCaricamento.getIdUtente());
         if (verificaUtente(autoreCaricamento, comunePoi)) {
@@ -60,7 +60,7 @@ public class ControllerCaricamenti {
     public ResponseEntity<String> creaPoiTemporaneo(@Valid @RequestBody PoiTemporaneoBody poiBody) {
         Coordinate posizionePoi = poiBody.getPosizionePoi();
         Comune comunePoi = serviziComune.getComune(posizionePoi);
-        Poi poi = serviziPoi.creaPoiTemporaneo(poiBody.getNomePoi(), poiBody.getDescrizionePoi(), posizionePoi, comunePoi, poiBody.getPeriodoApertura());
+        Poi poi = serviziPoi.creaPoi(poiBody.getNomePoi(), poiBody.getDescrizionePoi(), posizionePoi, comunePoi, poiBody.getPeriodoApertura());
         UtenteStandard autoreCaricamento =serviziUtenteRegistrato.getUtenteStandard( poiBody.getIdAutoreCaricamento());
         poi.setIdAutore(autoreCaricamento.getIdUtente());
         if (verificaUtente(autoreCaricamento, comunePoi)) {

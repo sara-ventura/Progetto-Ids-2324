@@ -77,7 +77,7 @@ public class ServiziUtenteRegistrato {
      * @param password la password dell'utente.
      * @return {@code true} se il login ha successo, {@code false} altrimenti.
      */
-    public UtenteRegistrato  loginUtente(String email, String password) {
+    public UtenteRegistrato loginUtente(String email, String password) {
         CredenzialiUtente credenziali = serviziCredenziali.getCredenziali(email);
         if (credenziali == null) {
             throw new IllegalArgumentException("Credenziali non trovate");
@@ -86,7 +86,8 @@ public class ServiziUtenteRegistrato {
         if (serviziCredenziali.verificaPassword(password, credenziali.getIdCredenziali())) {
             return getUtente(email);
         }
-        throw new IllegalArgumentException("Password errata");    }
+        throw new IllegalArgumentException("Password errata");
+    }
 
     /**
      * Salva un utente registrato nel repository.
@@ -118,9 +119,19 @@ public class ServiziUtenteRegistrato {
     }
 
     /**
-     * Restituisce l'utente a cui è associata la mail passata come parametro.
-     * @param email dell'utente.
+     * Restituisce un utente dato il suo ID.
      *
+     * @param id l'ID dell'utente.
+     * @return l'utente standard, se trovato.
+     */
+    public UtenteRegistrato getUtente(Long id) {
+        return utenteRegistratoRepository.findById(id).orElse(null);
+    }
+
+    /**
+     * Restituisce l'utente a cui è associata la mail passata come parametro.
+     *
+     * @param email dell'utente.
      * @return l'utente associato alla mail.
      */
     public UtenteRegistrato getUtente(String email) {

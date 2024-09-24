@@ -1,10 +1,10 @@
 package it.unicam.cs.ids.GeoPlus;
 
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.ComuneGiaEsistenteException;
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.ComuneNonTrovatoException;
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.NomeComuneIncompatibileException;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.ComuniRepository;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneGiaEsistenteException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneNonTrovatoException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.NomeComuneIncompatibileException;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziComune;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import jakarta.transaction.Transactional;
@@ -15,7 +15,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class ServiziComuneTest {

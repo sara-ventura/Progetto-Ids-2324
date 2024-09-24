@@ -1,5 +1,8 @@
 package it.unicam.cs.ids.GeoPlus.Controller;
 
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import it.unicam.cs.ids.GeoPlus.Model.Gestori.GestoreSalvataggi;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziComune;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziContenuto;
@@ -8,7 +11,11 @@ import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 
 @RestController
@@ -31,11 +38,15 @@ public class ControllerOperazioniUtente {
     private GestoreSalvataggi gestoreSalvataggi;
 
 
-
-    @PostMapping("/segnalaContenuto/{idComune}/{idContenuto}/{idUtente}")
-    public ResponseEntity<String> segnalaContenuto(@PathVariable long idComune, @PathVariable long idContenuto, @PathVariable long idUtente) {
+    @PostMapping("/segnalaContenuto/{idContenuto}/{idUtente}")
+    public ResponseEntity<String> segnalaContenuto(@PathVariable long idContenuto, @PathVariable long idUtente) {
+        validaUtente(idUtente);
+        Comune comune = serviziComune.getComune(validaContenuto(idContenuto).getPoi().getPosizionePoi());
+        if (comune == null) {
+            ResponseEntity.status(HttpStatus.NOT_FOUND);
+        }
         serviziSegnalazioni.creaSegnalazione(
-                serviziComune.getComune(idComune),
+                serviziComune.getComune(comune.getIdComune()),
                 serviziUtenteRegistrato.getUtenteStandard(idUtente),
                 serviziContenuto.getContenuto(idContenuto)
         );
@@ -44,6 +55,8 @@ public class ControllerOperazioniUtente {
 
     @PostMapping("/salvaContenuto/{idContenuto}/{idUtente}")
     public ResponseEntity<String> salvaContenuto(@PathVariable long idContenuto, @PathVariable long idUtente) {
+        validaUtente(idUtente);
+        validaContenuto(idContenuto);
         boolean salvato = gestoreSalvataggi.salvaContenuto(
                 serviziContenuto.getContenuto(idContenuto),
                 serviziUtenteRegistrato.getUtenteStandard(idUtente)
@@ -56,6 +69,8 @@ public class ControllerOperazioniUtente {
 
     @PostMapping("/rimuoviContenutoSalvato/{idContenuto}/{idUtente}")
     public ResponseEntity<String> rimuoviContenutoSalvato(@PathVariable long idContenuto, @PathVariable long idUtente) {
+        validaUtente(idUtente);
+        validaContenuto(idContenuto);
         boolean rimosso = gestoreSalvataggi.eliminaContenutoDaiSalvati(
                 serviziContenuto.getContenuto(idContenuto),
                 serviziUtenteRegistrato.getUtenteStandard(idUtente)
@@ -64,6 +79,21 @@ public class ControllerOperazioniUtente {
             return ResponseEntity.status(HttpStatus.CREATED).body("Il contenuto è stato rimosso con successo");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Il contenuto non è stato trovato nei salvataggi");
+    }
+
+    private void validaUtente(Long idUtente) {
+        UtenteStandard utente = serviziUtenteRegistrato.getUtenteStandard(idUtente);
+        if (utente == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato");
+        }
+    }
+
+    private Contenuto validaContenuto(Long idContenuto) {
+        Contenuto contenuto = serviziContenuto.getContenuto(idContenuto);
+        if (contenuto == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Contenuto non trovato");
+        }
+        return contenuto;
     }
 }
 

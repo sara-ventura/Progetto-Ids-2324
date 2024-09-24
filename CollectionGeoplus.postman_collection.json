@@ -1,0 +1,1568 @@
+{
+	"info": {
+		"_postman_id": "8b86b006-f53d-49ae-9f2c-a6ec4b1950e5",
+		"name": "CollectionGeoplus",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37899513"
+	},
+	"item": [
+		{
+			"name": "RegistrazioneAmministratore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"amministratore@camerino.it\",\r\n    \"password\": \"passwordSicura123\",\r\n    \"nomeComune\": \"Camerino\",\r\n    \"descrizione\": \"Città di Unicam.\",\r\n    \"coordinateCentrali\": {\r\n        \"latitudine\": 43.1357,\r\n        \"longitudine\": 13.0683\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/autenticazioni/registrazione/amministratore",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"autenticazioni",
+						"registrazione",
+						"amministratore"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegistraUtente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"curatore@camerino.it\",\r\n    \"password\": \"passwordSicura123\",\r\n    \"ruolo\": \"CURATORE\",\r\n    \"comune\": \"Camerino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/autenticazioni/registrazione/utente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"autenticazioni",
+						"registrazione",
+						"utente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegistraUtente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"animatore@camerino.it\",\r\n    \"password\": \"passwordSicura123\",\r\n    \"ruolo\": \"ANIMATORE\",\r\n    \"comune\": \"Camerino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/autenticazioni/registrazione/utente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"autenticazioni",
+						"registrazione",
+						"utente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegistraUtente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"contributor@camerino.it\",\r\n    \"password\": \"passwordSicura123\",\r\n    \"ruolo\": \"CONTRIBUTOR\",\r\n    \"comune\": \"Camerino\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/autenticazioni/registrazione/utente",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"autenticazioni",
+						"registrazione",
+						"utente"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RegistraUtenteNoComune",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"TURISTAAUT@camerino.it\",\r\n    \"password\": \"passwordSicura123\",\r\n    \"ruolo\": \"TURISTA_AUTENTICATO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/autenticazioni/registrazione/TuristaAut",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"autenticazioni",
+						"registrazione",
+						"TuristaAut"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LoginUtente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"amministratore@camerino.it\",\r\n    \"password\": \"passwordSicura123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/autenticazioni/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"autenticazioni",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaPoi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomePoi\": \"Orto Botanico\",\r\n    \"descrizionePoi\": \"Serra\",\r\n    \"posizionePoi\": {\r\n        \"latitudine\": 43.1354,\r\n        \"longitudine\": 13.0691\r\n    },\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/Poi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"Poi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaPoi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomePoi\": \"Biblioteca Giurisprudenza\",\r\n    \"descrizionePoi\": \"Biblioteca UNICAM\",\r\n    \"posizionePoi\": {\r\n        \"latitudine\": 43.1464,\r\n        \"longitudine\": 13.0669\r\n    },\r\n    \"idAutoreCaricamento\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/Poi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"Poi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaPoi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomePoi\": \"Rocca di Camerino\",\r\n    \"descrizionePoi\": \"Una storica fortezza situata a Camerino, famosa per la sua architettura e storia.\",\r\n    \"posizionePoi\": {\r\n        \"latitudine\": 43.1111,\r\n        \"longitudine\": 13.1252\r\n    },\r\n    \"idAutoreCaricamento\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/Poi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"Poi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaPoi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomePoi\": \"Sottocorte\",\r\n    \"descrizionePoi\": \"Centro commerciale\",\r\n    \"posizionePoi\": {\r\n        \"latitudine\": 43.1466,\r\n        \"longitudine\": 13.0641\r\n    },\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/Poi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"Poi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaPoiTemporaneo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomePoi\": \"Taverne patrono\",\r\n    \"descrizionePoi\": \"taverne santo  patrono Camerino.\",\r\n    \"posizionePoi\": {\r\n        \"latitudine\": 43.1458,\r\n        \"longitudine\": 13.0665\r\n    },\r\n    \"idAutoreCaricamento\": 2,\r\n    \"periodoApertura\": {\r\n        \"dataInizio\": \"2025-05-18T00:00:00\",\r\n        \"dataFine\": \"2025-05-25T23:59:59\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/PoiTemporaneo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"PoiTemporaneo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaContenuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"testo\": \"Una vista stupenda\",\r\n    \"idPoi\": 1,\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/ContenutoTestuale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"ContenutoTestuale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaContenuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"testo\": \"Da visitare in compagnia\",\r\n    \"idPoi\": 2,\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/ContenutoTestuale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"ContenutoTestuale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaItinerario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 1,\r\n    \"listaPoi\": [1,2],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/Itinerario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"Itinerario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaItinerario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca biblioteca\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n\r\n    \"idComune\": 1,\r\n     \"listaPoi\": [2,3],\r\n    \"idAutoreCaricamento\": 3\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/Itinerario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"Itinerario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RicercaComune",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cerca/Comune?nomeComune=Camerino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cerca",
+						"Comune"
+					],
+					"query": [
+						{
+							"key": "nomeComune",
+							"value": "Camerino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RicercaPoi",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cerca/Poi?nomePoi=Sottocorte",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cerca",
+						"Poi"
+					],
+					"query": [
+						{
+							"key": "nomePoi",
+							"value": "Sottocorte"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RicercaGenerica",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cerca/generico?nome=Camerino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cerca",
+						"generico"
+					],
+					"query": [
+						{
+							"key": "nome",
+							"value": "Camerino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RicercaListaPoiComune",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cerca/ottieniListaPoi?nomeComune=Camerino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cerca",
+						"ottieniListaPoi"
+					],
+					"query": [
+						{
+							"key": "nomeComune",
+							"value": "Camerino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RicercaListaItinerariComune",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/cerca/ottieniListaItinerari?nomeComune=Camerino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cerca",
+						"ottieniListaItinerari"
+					],
+					"query": [
+						{
+							"key": "nomeComune",
+							"value": "Camerino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminaPoi",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/elimina/Poi/4/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"elimina",
+						"Poi",
+						"4",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminaItinerario",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/elimina/Itinerario/6/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"elimina",
+						"Itinerario",
+						"6",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminaContenuto",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/caricamenti/elimina/Contenuto/7/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"caricamenti",
+						"elimina",
+						"Contenuto",
+						"7",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AccettaRichiestaCuartore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/gestione/richieste/accettaRichiesta/2/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"richieste",
+						"accettaRichiesta",
+						"2",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RifiutaRichiestaCuartore",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/richieste/rifiutaRichiesta/3/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"richieste",
+						"rifiutaRichiesta",
+						"3",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RichiesteComune",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/richieste/richiesteComune/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"richieste",
+						"richiesteComune",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RichiestaModificaTestoPoi",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entitaId\": 2,\r\n  \"autoreRichiestaId\": 3,\r\n  \"modificaTesto\": \"Nuovo nome del POI\",\r\n  \"tipoModifica\": \"NOME\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utente/modifiche/Poi",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utente",
+						"modifiche",
+						"Poi"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RichiestaModificaTestoItinerario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entitaId\": 3,\r\n  \"autoreRichiestaId\": 2,\r\n  \"modificaTesto\": \"Nuova descrizione del POI\",\r\n  \"tipoModifica\": \"DESCRIZIONE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modifiche/Itinerario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modifiche",
+						"Itinerario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RichiestaModificaTestoContenuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"entitaId\": 101,\r\n  \"autoreRichiestaId\": 456,\r\n  \"modificaTesto\": \"Nuovo testo del contenuto\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/modifiche/Itinerario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"modifiche",
+						"Itinerario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RichiestaModificaOrario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"poiId\": 1,\r\n  \"autoreRichiestaId\": 2,\r\n  \"giorno\": \"1\",\r\n  \"orarioApertura\": \"09:00\",\r\n  \"orarioChiusura\": \"18:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utente/modifiche/Poi/orario",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utente",
+						"modifiche",
+						"Poi",
+						"orario"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RichiestaModificaPeriodoTempo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"poiId\": 3,\r\n    \"autoreRichiestaId\": 2,\r\n    \"dataApertura\": \"2025-07-18T00:00:00\",\r\n    \"dataChiusura\": \"2025-07-18T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utente/modifiche/Poi/periodoTempo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utente",
+						"modifiche",
+						"Poi",
+						"periodoTempo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SegnalaContenuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/operazioni/segnalaContenuto/2/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"operazioni",
+						"segnalaContenuto",
+						"2",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SalvaContenuto",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/operazioni/salvaContenuto/3/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"operazioni",
+						"salvaContenuto",
+						"3",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RimuoviContenutoDaiSalvati",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/operazioni/rimuoviContenutoSalvato/3/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"operazioni",
+						"rimuoviContenutoSalvato",
+						"3",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AccettaSegnalazione",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/segnalazioni/accetta/1/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"segnalazioni",
+						"accetta",
+						"1",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RifiutaSegnalazione",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/segnalazioni/rifiuta/2/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"segnalazioni",
+						"rifiuta",
+						"2",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OttieniSegnalazioniComuni",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/segnalazioni/listaSegnalazioniComune/?nomeComune=Camerino",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"segnalazioni",
+						"listaSegnalazioniComune",
+						""
+					],
+					"query": [
+						{
+							"key": "nomeComune",
+							"value": "Camerino"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OttieniListaUtentiComune",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utenti/listaUtentiComune/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utenti",
+						"listaUtentiComune",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AssegnaRuolo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/utenti/assegnaRuolo/1/3?ruolo=CONTRIBUTOR_AUTORIZZATO",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"utenti",
+						"assegnaRuolo",
+						"1",
+						"3"
+					],
+					"query": [
+						{
+							"key": "ruolo",
+							"value": "CONTRIBUTOR_AUTORIZZATO"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nomeContest\": \"Poesia\",\r\n  \"descrizione\": \"Un contest di poesia.\",\r\n  \"autoreContestId\": 3, \r\n  \"regole\": \"contenuti originali.\",\r\n  \"pubblico\": true,\r\n  \"periodoTempo\": {\r\n    \"dataInizio\": \"2024-09-20T00:00:00\",\r\n    \"dataFine\": \"2024-10-20T23:59:59\"\r\n  },\r\n  \"poiIds\": [1]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/contest/creaContest",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"contest",
+						"creaContest"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IscrizioneContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contest/iscrivitiContest/2/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contest",
+						"iscrivitiContest",
+						"2",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InvitaUtente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/contest/invitaUtente/3/1/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"contest",
+						"invitaUtente",
+						"3",
+						"1",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AccettaInvito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contest/accettaInvito/2/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contest",
+						"accettaInvito",
+						"2",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RifiutaInvito",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contest/rifiutaInvito/3/3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contest",
+						"rifiutaInvito",
+						"3",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreaContenutoContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"testo\": \"Questo è un contenuto multimediale di esempio.\",\r\n  \"file\": \"base64EncodedFileData\",\r\n  \"idAutoreCaricamento\": 2,\r\n  \"idPoi\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contest/creaContenutoMultimediale/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contest",
+						"creaContenutoMultimediale",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AccettarichiestaCaricamentoContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/contest/accettaRichiesta/3/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"contest",
+						"accettaRichiesta",
+						"3",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DecretaVincitoreContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/contest/decretaVincitore/3/1/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"contest",
+						"decretaVincitore",
+						"3",
+						"1",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RifiutaRichiestaCaricamentoContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/gestione/contest/rifiutaRichiesta/2/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"gestione",
+						"contest",
+						"rifiutaRichiesta",
+						"2",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "IscrizioneContest",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contest/iscrivitiContest/5/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contest",
+						"iscrivitiContest",
+						"5",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CancellaContenutoContest",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nomeItinerario\": \"Rocca taverne\",\r\n    \"descrizionePoi\": \"passeggiata\",\r\n    \"idComune\": 3,\r\n    \"listaPoi\": [2,4],\r\n    \"idAutoreCaricamento\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/contest/cancellaContenuto/2/1/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"contest",
+						"cancellaContenuto",
+						"2",
+						"1",
+						"4"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}

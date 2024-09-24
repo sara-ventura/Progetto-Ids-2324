@@ -1,10 +1,10 @@
 package it.unicam.cs.ids.GeoPlus.Model.Servizi;
 
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.ComuneGiaEsistenteException;
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.ComuneNonTrovatoException;
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.NomeComuneIncompatibileException;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.ComuniRepository;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneGiaEsistenteException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneNonTrovatoException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.NomeComuneIncompatibileException;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,6 +53,6 @@ public class ServiziComune {
     }
 
     public Comune getComune(long idComune) {
-        return  repository.findById(idComune).orElse(null);
+        return repository.findById(idComune).orElse(null);
     }
 }

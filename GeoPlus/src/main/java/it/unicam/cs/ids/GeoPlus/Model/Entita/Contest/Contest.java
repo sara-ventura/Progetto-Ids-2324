@@ -25,7 +25,7 @@ public class Contest {
     private boolean pubblico;
     @ManyToOne
     private UtenteStandard autoreContest;
-    @OneToMany
+    @ManyToMany
     private List<UtenteStandard> listaPartecipanti;
     @OneToMany
     private List<Contenuto> listaContenuti;

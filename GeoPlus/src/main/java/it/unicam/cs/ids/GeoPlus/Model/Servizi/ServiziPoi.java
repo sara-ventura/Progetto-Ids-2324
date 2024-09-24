@@ -1,6 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Servizi;
 
-import it.unicam.cs.ids.GeoPlus.Model.Eccezioni.ComuneNonTrovatoException;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneNonTrovatoException;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
@@ -29,7 +29,7 @@ public class ServiziPoi {
     @Autowired
     private SistemaOSM sistemaOSM;
 
-    public Poi creaPoiTemporaneo(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi) throws ComuneNonTrovatoException {
+    public Poi creaPoi(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi) throws ComuneNonTrovatoException {
         boolean corrispondenza = sistemaOSM.contieneCoordinate(posizionePoi, comunePoi.getNomeComune());
         if (!corrispondenza) {
             throw new ComuneNonTrovatoException("Comune non corrispondente alle coordinate fornite.");
@@ -40,7 +40,7 @@ public class ServiziPoi {
         return new Poi(sistemaOSM.formattaNomeComune(nomePoi), descrizionePoi, posizionePoi);
     }
 
-    public PoiTemporaneo creaPoiTemporaneo(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi, PeriodoTempo periodoTempo) throws ComuneNonTrovatoException {
+    public PoiTemporaneo creaPoi(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi, PeriodoTempo periodoTempo) throws ComuneNonTrovatoException {
         boolean corrispondenza = sistemaOSM.contieneCoordinate(posizionePoi, comunePoi.getNomeComune());
         if (!corrispondenza) {
             throw new ComuneNonTrovatoException("Comune non corrispondente alle coordinate fornite.");
