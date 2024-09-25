@@ -4,11 +4,6 @@ import jakarta.persistence.Embeddable;
 
 import java.time.LocalTime;
 
-
-/**
- * La classe Orari rappresenta un insieme di orari di apertura e chiusura
- * per ogni giorno della settimana.
- */
 @Embeddable
 public class Orari {
 

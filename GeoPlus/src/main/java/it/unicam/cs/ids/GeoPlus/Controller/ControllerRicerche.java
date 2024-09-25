@@ -90,6 +90,9 @@ public class ControllerRicerche {
     @GetMapping("ottieniListaItinerari")
     public ResponseEntity<List<Itinerario>> ottieniListaItinerari(@RequestParam String nomeComune) {
         Comune comune = serviziComune.getComune(nomeComune);
-        return ResponseEntity.ok(serviziItinerario.getItinerariApprovati(comune));
+        List<Itinerario> itinerariApprovati = comune.getItinerariAssociati().stream()
+                .filter(Itinerario::isApprovato)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(itinerariApprovati);
     }
 }

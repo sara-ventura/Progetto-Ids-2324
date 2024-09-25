@@ -1,7 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Contest;
 
 
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.*;
 

@@ -2,7 +2,6 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Contest;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
 import jakarta.persistence.*;

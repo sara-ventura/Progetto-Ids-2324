@@ -34,10 +34,6 @@ public class ContenutoMultimediale extends Contenuto {
         return file;
     }
 
-    public void setDidascalia(String didascalia) {
-        this.didascalia = didascalia;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

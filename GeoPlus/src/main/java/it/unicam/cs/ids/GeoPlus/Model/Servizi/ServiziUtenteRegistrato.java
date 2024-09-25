@@ -12,11 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * Servizio che gestisce le operazioni relative agli utenti registrati sulla piattaforma.
- * Fornisce funzionalità per la creazione di nuovi utenti e utilizza i servizi relativi alle credenziali
- * e il repository per gli utenti registrati.
- */
 @Service
 public class ServiziUtenteRegistrato {
 
@@ -26,30 +21,12 @@ public class ServiziUtenteRegistrato {
     @Autowired
     private ServiziCredenziali serviziCredenziali;
 
-
-    /**
-     * Registra un nuovo utente non autorizzato, assegnando email, password e ruolo.
-     *
-     * @param email    l'email dell'utente.
-     * @param password la password dell'utente.
-     * @param ruolo    il ruolo dell'utente.
-     * @return l'istanza di {@link UtenteStandard} appena registrato.
-     */
     public UtenteStandard registraNuovoUtenteNonAutorizzato(String email, String password, Ruoli ruolo) {
         CredenzialiUtente credenzialiUtente = serviziCredenziali.creaCredenziali(email, password);
         UtenteStandard nuovoUtente = new UtenteStandard(ruolo, credenzialiUtente.getIdCredenziali());
         return utenteRegistratoRepository.save(nuovoUtente);
     }
 
-    /**
-     * Registra un nuovo utente autorizzato, assegnando email, password, ruolo e comune di appartenenza.
-     *
-     * @param email    l'email dell'utente.
-     * @param password la password dell'utente.
-     * @param ruolo    il ruolo dell'utente.
-     * @param comune   il comune di appartenenza dell'utente.
-     * @return l'istanza di {@link UtenteStandard} appena registrato.
-     */
     public UtenteStandard registraNuovoUtenteAutorizzato(String email, String password, Ruoli ruolo, Comune comune) {
         CredenzialiUtente credenzialiUtente = serviziCredenziali.creaCredenziali(email, password);
         UtenteStandard nuovoUtente = new UtenteStandard(ruolo, credenzialiUtente.getIdCredenziali());
@@ -57,26 +34,12 @@ public class ServiziUtenteRegistrato {
         return utenteRegistratoRepository.save(nuovoUtente);
     }
 
-    /**
-     * Registra un nuovo amministratore comunale con email e password.
-     *
-     * @param email    l'email dell'amministratore.
-     * @param password la password dell'amministratore.
-     * @return l'istanza di {@link AmministratoreComunale} appena registrato.
-     */
     public AmministratoreComunale registraNuovoAmministratoreComunale(String email, String password) {
         CredenzialiUtente credenzialiUtente = serviziCredenziali.creaCredenziali(email, password);
         AmministratoreComunale nuovoAmministratore = new AmministratoreComunale(credenzialiUtente.getIdCredenziali());
         return utenteRegistratoRepository.save(nuovoAmministratore);
     }
 
-    /**
-     * Effettua il login di un utente verificando email e password.
-     *
-     * @param email    l'email dell'utente.
-     * @param password la password dell'utente.
-     * @return {@code true} se il login ha successo, {@code false} altrimenti.
-     */
     public UtenteRegistrato loginUtente(String email, String password) {
         CredenzialiUtente credenziali = serviziCredenziali.getCredenziali(email);
         if (credenziali == null) {
@@ -89,63 +52,27 @@ public class ServiziUtenteRegistrato {
         throw new IllegalArgumentException("Password errata");
     }
 
-    /**
-     * Salva un utente registrato nel repository.
-     *
-     * @param utente l'utente da salvare.
-     */
     public void salvaUtente(UtenteRegistrato utente) {
         utenteRegistratoRepository.save(utente);
     }
 
-    /**
-     * Elimina un utente standard dal repository e rimuove le relative credenziali.
-     *
-     * @param utente l'utente da eliminare.
-     */
     public void eliminaUtente(UtenteStandard utente) {
         serviziCredenziali.eliminaCredenziali(serviziCredenziali.getCredenziali(utente.getIdCredenziali()));
         utenteRegistratoRepository.delete(utente);
     }
 
-
-    /**
-     * Restituisce la lista di tutti gli utenti standard presenti nel sistema.
-     *
-     * @return una lista di {@link UtenteStandard}.
-     */
     public List<UtenteStandard> getAllUtentiStandard() {
         return utenteRegistratoRepository.findAllStandard();
     }
 
-    /**
-     * Restituisce un utente dato il suo ID.
-     *
-     * @param id l'ID dell'utente.
-     * @return l'utente standard, se trovato.
-     */
     public UtenteRegistrato getUtente(Long id) {
         return utenteRegistratoRepository.findById(id).orElse(null);
     }
 
-    /**
-     * Restituisce l'utente a cui è associata la mail passata come parametro.
-     *
-     * @param email dell'utente.
-     * @return l'utente associato alla mail.
-     */
     public UtenteRegistrato getUtente(String email) {
         return utenteRegistratoRepository.findByIdCredenziali(serviziCredenziali.getCredenziali(email).getIdCredenziali());
     }
 
-
-    /**
-     * Restituisce un utente standard dato il suo ID.
-     *
-     * @param id l'ID dell'utente.
-     * @return l'utente standard, se trovato.
-     * @throws RuntimeException se l'utente non è trovato o non è un utente standard.
-     */
     public UtenteStandard getUtenteStandard(Long id) {
         List<UtenteStandard> utentiStandard = utenteRegistratoRepository.findAllStandard();
         return utentiStandard.stream()
@@ -154,12 +81,6 @@ public class ServiziUtenteRegistrato {
                 .orElseThrow(() -> new RuntimeException("Utente non trovato o non è un UtenteStandard"));
     }
 
-    /**
-     * Restituisce la lista degli utenti registrati appartenenti a un determinato comune.
-     *
-     * @param comune il comune di appartenenza.
-     * @return una lista di {@link UtenteRegistrato} appartenenti al comune specificato.
-     */
     public List<UtenteRegistrato> getListaUtentiComune(Comune comune) {
         return utenteRegistratoRepository.findByComuneAppartenenza(comune);
     }

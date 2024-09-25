@@ -2,29 +2,25 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
 import jakarta.persistence.*;
 
 import java.util.Objects;
 
-/**
- * La classe Segnalazione rappresenta una segnalazione effettuata da un utente registrato
- * riguardo a un contenuto specifico. Include informazioni sull'autore della segnalazione
- * e sul contenuto segnalato.
- */
 @Entity
 public class Segnalazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idSegnalazione;
     @ManyToOne
-    private UtenteRegistrato autoreSegnalazione;
+    private UtenteStandard autoreSegnalazione;
     @ManyToOne
     private Contenuto contenutoSegnalato;
     @ManyToOne
     private Comune comuneSegnalazione;
 
 
-    public Segnalazione(Comune comune, UtenteRegistrato autoreSegnalazione, Contenuto contenutoSegnalato) {
+    public Segnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato) {
         this.autoreSegnalazione = autoreSegnalazione;
         this.contenutoSegnalato = contenutoSegnalato;
         this.comuneSegnalazione = comune;
@@ -40,7 +36,7 @@ public class Segnalazione {
     }
 
 
-    public UtenteRegistrato getAutoreSegnalazione() {
+    public UtenteStandard getAutoreSegnalazione() {
         return autoreSegnalazione;
     }
 

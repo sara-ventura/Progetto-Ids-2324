@@ -16,11 +16,10 @@ public class OrdinamentoPoiItinerarioTest {
 
 
     private Itinerario itinerario;
-    private Comune comune;
 
     @BeforeEach
     public void setUp() {
-        comune = new Comune();
+        Comune comune = new Comune();
 
         List<Poi> listaPoi = new ArrayList<>();
         listaPoi.add(new Poi("Circo Massimo", ".", new Coordinate(41.879174, 12.492231))); // Circo Massimo

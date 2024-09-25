@@ -11,30 +11,12 @@ import jakarta.persistence.ManyToOne;
 import java.util.Objects;
 
 
-/**
- * La classe RichiestaModificaTestoIt rappresenta una richiesta specifica
- * di modifica del testo associato a un oggetto di tipo Itinerario nel sistema GeoPlus.
- * Estende la classe astratta RichiestaModificaTesto
- * utilizzando il tipo specifico Itinerario per gestire le richieste di modifica del testo.
- * Questa classe è utilizzata per gestire le richieste che includono modifiche di testo
- * su itinerari specifici, come descrizioni, indicazioni o altre informazioni testuali
- * associate a un itinerario.
- */
-
 @Entity
 public class RichiestaModificaTestoIt extends RichiestaModificaTesto {
 
     @ManyToOne
     private Itinerario itinerario;
 
-    /**
-     * Costruttore che inizializza una nuova richiesta di modifica del testo per un itinerario con i dettagli specificati.
-     *
-     * @param autoreRichiesta l'utente registrato che ha effettuato la richiesta
-     * @param comune          il comune associato alla richiesta
-     * @param itinerario      l'itinerario al quale si riferisce la modifica del testo
-     * @param modificaTesto   il testo della modifica proposto
-     */
 
     public RichiestaModificaTestoIt(UtenteStandard autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
@@ -58,14 +40,6 @@ public class RichiestaModificaTestoIt extends RichiestaModificaTesto {
         return Objects.equals(itinerario, richiestaModificaTestoIt.itinerario);
     }
 
-
-    /**
-     * Genera il codice hash per l'oggetto RichiestaModificaTestoIt.
-     * L'implementazione utilizza il codice hash della superclasse per garantire che
-     * le caratteristiche uniche dell'oggetto siano prese in considerazione.
-     *
-     * @return il codice hash calcolato per l'oggetto
-     */
 
     @Override
     public int hashCode() {
