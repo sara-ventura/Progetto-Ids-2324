@@ -16,8 +16,8 @@ public class ServiziSegnalazioni {
     private SegnalazioniRepository segnalazioneRepository;
 
 
-    public Segnalazione creaSegnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato) {
-        Segnalazione segnalazione = new Segnalazione(comune, autoreSegnalazione, contenutoSegnalato);
+    public Segnalazione creaSegnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato, String motivoSegnalazione) {
+        Segnalazione segnalazione = new Segnalazione(comune, autoreSegnalazione, contenutoSegnalato, motivoSegnalazione);
         return segnalazioneRepository.save(segnalazione);
     }
 

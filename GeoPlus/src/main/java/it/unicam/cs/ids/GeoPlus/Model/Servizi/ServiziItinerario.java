@@ -34,7 +34,7 @@ public class ServiziItinerario {
             Comune comunePoi = serviziComune.getComune(poi.getPosizionePoi());
             if (comunePoi == null || !comune.getNomeComune().trim().equalsIgnoreCase(comunePoi.getNomeComune().trim())) {
                 String nomeComuneOSM = sistemaOSM.getNomeComuneDaCoordinate(poi.getPosizionePoi());
-                throw new IllegalArgumentException("Il Poi " + poi.getNomePoi() + " non appartiene al comune " + comune.getNomeComune() + " ma appartiene a " + nomeComuneOSM);
+                throw new IllegalArgumentException("Il Poi " + poi.getNomePoi() + "non appartiene al comune " + comune.getNomeComune() + " ma appartiene a " + nomeComuneOSM);
             }
         }
         return new Itinerario(nomeItinerario, descrizioneItinerario, comune, listaPoi);

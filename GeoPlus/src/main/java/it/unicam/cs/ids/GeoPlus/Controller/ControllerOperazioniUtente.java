@@ -11,10 +11,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 
@@ -39,7 +36,7 @@ public class ControllerOperazioniUtente {
 
 
     @PostMapping("/segnalaContenuto/{idContenuto}/{idUtente}")
-    public ResponseEntity<String> segnalaContenuto(@PathVariable long idContenuto, @PathVariable long idUtente) {
+    public ResponseEntity<String> segnalaContenuto(@PathVariable long idContenuto, @PathVariable long idUtente, @RequestBody String motivoSegnalazione) {
         validaUtente(idUtente);
         Comune comune = serviziComune.getComune(validaContenuto(idContenuto).getPoi().getPosizionePoi());
         if (comune == null) {
@@ -48,7 +45,7 @@ public class ControllerOperazioniUtente {
         serviziSegnalazioni.creaSegnalazione(
                 serviziComune.getComune(comune.getIdComune()),
                 serviziUtenteRegistrato.getUtenteStandard(idUtente),
-                serviziContenuto.getContenuto(idContenuto)
+                serviziContenuto.getContenuto(idContenuto), motivoSegnalazione
         );
         return ResponseEntity.status(HttpStatus.CREATED).body("La segnalazione è stata effettuata con successo.");
     }

@@ -19,11 +19,13 @@ public class Segnalazione {
     @ManyToOne
     private Comune comuneSegnalazione;
 
+    private String motivoSegnalazione;
 
-    public Segnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato) {
+    public Segnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato, String motivoSegnalazione) {
         this.autoreSegnalazione = autoreSegnalazione;
         this.contenutoSegnalato = contenutoSegnalato;
         this.comuneSegnalazione = comune;
+        this.motivoSegnalazione = motivoSegnalazione;
     }
 
     public Segnalazione() {
@@ -56,11 +58,12 @@ public class Segnalazione {
         return Objects.equals(idSegnalazione, that.idSegnalazione) &&
                 Objects.equals(autoreSegnalazione, that.autoreSegnalazione) &&
                 Objects.equals(contenutoSegnalato, that.contenutoSegnalato) &&
-                Objects.equals(comuneSegnalazione, that.comuneSegnalazione);
+                Objects.equals(comuneSegnalazione, that.comuneSegnalazione)&&
+                Objects.equals(motivoSegnalazione, that.motivoSegnalazione);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(idSegnalazione, autoreSegnalazione, contenutoSegnalato, comuneSegnalazione);
+        return Objects.hash(idSegnalazione, autoreSegnalazione, contenutoSegnalato, comuneSegnalazione, motivoSegnalazione);
     }
 }
