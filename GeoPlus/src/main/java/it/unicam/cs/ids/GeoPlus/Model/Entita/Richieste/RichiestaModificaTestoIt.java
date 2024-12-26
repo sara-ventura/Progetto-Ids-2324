@@ -1,10 +1,8 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
-
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
@@ -18,7 +16,7 @@ public class RichiestaModificaTestoIt extends RichiestaModificaTesto {
     private Itinerario itinerario;
 
 
-    public RichiestaModificaTestoIt(UtenteStandard autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTestoIt(Account autoreRichiesta, Comune comune, Itinerario itinerario, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
         this.itinerario = itinerario;
     }

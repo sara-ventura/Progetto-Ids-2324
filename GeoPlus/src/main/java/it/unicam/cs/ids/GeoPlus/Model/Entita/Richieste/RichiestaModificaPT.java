@@ -2,8 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
@@ -20,8 +19,7 @@ public class RichiestaModificaPT extends Richiesta {
     private LocalDateTime dataChiusura;
 
 
-
-    public RichiestaModificaPT(UtenteStandard autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
+    public RichiestaModificaPT(Account autoreRichiesta, Comune comune, PoiTemporaneo poiTemporaneo, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
         super(autoreRichiesta, comune);
         this.poiTemporaneo = poiTemporaneo;
         this.dataApertura = dataApertura;

@@ -1,8 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -13,7 +12,7 @@ public class Segnalazione {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idSegnalazione;
     @ManyToOne
-    private UtenteStandard autoreSegnalazione;
+    private Account autoreSegnalazione;
     @ManyToOne
     private Contenuto contenutoSegnalato;
     @ManyToOne
@@ -21,7 +20,7 @@ public class Segnalazione {
 
     private String motivoSegnalazione;
 
-    public Segnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato, String motivoSegnalazione) {
+    public Segnalazione(Comune comune, Account autoreSegnalazione, Contenuto contenutoSegnalato, String motivoSegnalazione) {
         this.autoreSegnalazione = autoreSegnalazione;
         this.contenutoSegnalato = contenutoSegnalato;
         this.comuneSegnalazione = comune;
@@ -38,7 +37,7 @@ public class Segnalazione {
     }
 
 
-    public UtenteStandard getAutoreSegnalazione() {
+    public Account getAutoreSegnalazione() {
         return autoreSegnalazione;
     }
 
@@ -58,7 +57,7 @@ public class Segnalazione {
         return Objects.equals(idSegnalazione, that.idSegnalazione) &&
                 Objects.equals(autoreSegnalazione, that.autoreSegnalazione) &&
                 Objects.equals(contenutoSegnalato, that.contenutoSegnalato) &&
-                Objects.equals(comuneSegnalazione, that.comuneSegnalazione)&&
+                Objects.equals(comuneSegnalazione, that.comuneSegnalazione) &&
                 Objects.equals(motivoSegnalazione, that.motivoSegnalazione);
     }
 

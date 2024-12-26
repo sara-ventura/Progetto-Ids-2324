@@ -2,7 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
@@ -13,7 +13,7 @@ public class RichiestaCaricamentoContenuto extends RichiestaCaricamento {
     @OneToOne
     private Contenuto contenuto;
 
-    public RichiestaCaricamentoContenuto(UtenteStandard autoreRichiesta, Comune comune, Contenuto Contenuto) {
+    public RichiestaCaricamentoContenuto(Account autoreRichiesta, Comune comune, Contenuto Contenuto) {
         super(autoreRichiesta, comune);
         this.contenuto = Contenuto;
     }

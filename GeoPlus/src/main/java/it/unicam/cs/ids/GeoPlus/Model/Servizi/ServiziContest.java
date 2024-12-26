@@ -5,9 +5,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contest.Contest;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contest.InvitoContest;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.ContestRepository;
-
 import it.unicam.cs.ids.GeoPlus.Model.Repository.InvitoConetstRepository;
 import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +28,9 @@ public class ServiziContest {
     @Autowired
     private ServiziComune serviziComune;
     @Autowired
-    private ServiziUtenteRegistrato serviziUtenteRegistrato;
+    private ServiziAccount serviziAccount;
 
-    public void creaContest(String nomeContest, String descrizione, UtenteStandard autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo, List<Poi> riferimenti) {
+    public void creaContest(String nomeContest, String descrizione, Account autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo, List<Poi> riferimenti) {
         Comune comuneBase = serviziComune.getComune(riferimenti.getFirst().getPosizionePoi());
         if (!Objects.equals(comuneBase.getIdComune(), autoreContest.getComuneAppartenenza().getIdComune())) {
             throw new IllegalArgumentException("Un animatore non può creare contest con riferimenti fuori dal comune");
@@ -70,18 +69,18 @@ public class ServiziContest {
         }
     }
 
-    public void iscriviUtente(UtenteStandard utente, Contest contest) {
+    public void iscriviUtente(Account utente, Contest contest) {
         contest.aggiungiPartecipanteContest(utente);
         contestRepository.save(contest);
     }
 
 
-    public void rimuoviUtente(UtenteStandard utente, Contest contest) {
+    public void rimuoviUtente(Account utente, Contest contest) {
         contest.rimuoviPartecipanteContest(utente);
         contestRepository.save(contest);
     }
 
-    public void aggiungiContenutoContest(Contest contest, Contenuto contenuto, UtenteStandard partecipante) {
+    public void aggiungiContenutoContest(Contest contest, Contenuto contenuto, Account partecipante) {
         if (contest.isUtentePartecipante(partecipante)) {
             contest.aggiungiContenutoContest(contenuto);
             contestRepository.save(contest);
@@ -89,30 +88,30 @@ public class ServiziContest {
     }
 
 
-    public void rimuoviContenutoContest(Contest contest, Contenuto contenuto, UtenteStandard partecipante) {
+    public void rimuoviContenutoContest(Contest contest, Contenuto contenuto, Account partecipante) {
         if (contest.isUtentePartecipante(partecipante)) {
             contest.rimuoviContenutoContest(contenuto);
             contestRepository.save(contest);
         }
     }
 
-    public void creaInvito(UtenteStandard utente, Contest contest) {
+    public void creaInvito(Account utente, Contest contest) {
         InvitoContest invito = new InvitoContest(contest, utente);
         invitoContestRepository.save(invito);
         aggiungiInvito(invito);
     }
 
     public void eliminaInvito(InvitoContest invito) {
-        UtenteStandard utenteInvitato = invito.getUtenteInvitato();
+        Account utenteInvitato = invito.getUtenteInvitato();
         utenteInvitato.rimuoviInvitoContest(invito);
-        serviziUtenteRegistrato.salvaUtente(utenteInvitato);
+        serviziAccount.salvaUtente(utenteInvitato);
     }
 
 
     public void aggiungiInvito(InvitoContest invito) {
-        UtenteStandard utenteInvitato = invito.getUtenteInvitato();
+        Account utenteInvitato = invito.getUtenteInvitato();
         utenteInvitato.aggiungiInvitoContest(invito);
-        serviziUtenteRegistrato.salvaUtente(utenteInvitato);
+        serviziAccount.salvaUtente(utenteInvitato);
     }
 
     public InvitoContest getInvito(long invito) {

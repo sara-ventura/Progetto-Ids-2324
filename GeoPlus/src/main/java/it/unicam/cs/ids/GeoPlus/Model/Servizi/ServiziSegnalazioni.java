@@ -3,7 +3,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Servizi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Segnalazione;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.SegnalazioniRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class ServiziSegnalazioni {
     private SegnalazioniRepository segnalazioneRepository;
 
 
-    public Segnalazione creaSegnalazione(Comune comune, UtenteStandard autoreSegnalazione, Contenuto contenutoSegnalato, String motivoSegnalazione) {
+    public Segnalazione creaSegnalazione(Comune comune, Account autoreSegnalazione, Contenuto contenutoSegnalato, String motivoSegnalazione) {
         Segnalazione segnalazione = new Segnalazione(comune, autoreSegnalazione, contenutoSegnalato, motivoSegnalazione);
         return segnalazioneRepository.save(segnalazione);
     }

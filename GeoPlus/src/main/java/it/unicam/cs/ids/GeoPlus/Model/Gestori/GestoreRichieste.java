@@ -33,8 +33,10 @@ public class GestoreRichieste {
             case RichiestaSuContest richiestaSuContest -> accettaRichiestaCaricamentoSuContest(richiestaSuContest);
             case RichiestaModificaTesto richiestaModificaTesto -> approvaRichiestaModificaTesto(richiestaModificaTesto);
             case RichiestaModificaPT richiestaModificaPT -> accettaRichiestaModificaPT(richiestaModificaPT);
-            case RichiestaModificaOrario richiestaModificaOrario -> accettaRichiestaModificaOrario(richiestaModificaOrario);
-            default -> throw new IllegalArgumentException("Tipo di richiesta non gestito: " + richiesta.getClass().getSimpleName());
+            case RichiestaModificaOrario richiestaModificaOrario ->
+                    accettaRichiestaModificaOrario(richiestaModificaOrario);
+            default ->
+                    throw new IllegalArgumentException("Tipo di richiesta non gestito: " + richiesta.getClass().getSimpleName());
         }
     }
 
@@ -45,7 +47,8 @@ public class GestoreRichieste {
             case RichiestaModificaTesto richiestaModificaTesto -> rifiutaRichiestaModifica(richiestaModificaTesto);
             case RichiestaModificaPT richiestaModificaPT -> rifiutaRichiestaModifica(richiestaModificaPT);
             case RichiestaModificaOrario richiestaModificaOrario -> rifiutaRichiestaModifica(richiestaModificaOrario);
-            default -> throw new IllegalArgumentException("Tipo di richiesta non gestito: " + richiesta.getClass().getSimpleName());
+            default ->
+                    throw new IllegalArgumentException("Tipo di richiesta non gestito: " + richiesta.getClass().getSimpleName());
         }
     }
 

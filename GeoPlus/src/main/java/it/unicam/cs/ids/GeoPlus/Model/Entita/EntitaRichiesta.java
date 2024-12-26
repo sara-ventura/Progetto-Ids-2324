@@ -17,7 +17,6 @@ public abstract class EntitaRichiesta{
         return Id;
     }
 
-
     public Long getIdAutore() {
         return idAutore;
     }

@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Contest;
 
 
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.*;
 
 import java.util.Objects;
@@ -15,10 +15,10 @@ public class InvitoContest {
     @ManyToOne
     private Contest contest;
     @ManyToOne
-    private UtenteStandard utenteInvitato;
+    private Account utenteInvitato;
 
 
-    public InvitoContest(Contest contest, UtenteStandard utenteInvitato) {
+    public InvitoContest(Contest contest, Account utenteInvitato) {
         this.contest = contest;
         this.utenteInvitato = utenteInvitato;
     }
@@ -35,7 +35,7 @@ public class InvitoContest {
         return this.contest;
     }
 
-    public UtenteStandard getUtenteInvitato() {
+    public Account getUtenteInvitato() {
         return this.utenteInvitato;
     }
 

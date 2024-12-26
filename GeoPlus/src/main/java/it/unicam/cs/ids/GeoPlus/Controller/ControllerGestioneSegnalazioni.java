@@ -1,14 +1,17 @@
 package it.unicam.cs.ids.GeoPlus.Controller;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Segnalazione;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli;
 import it.unicam.cs.ids.GeoPlus.Model.Gestori.GestoreSegnalazioni;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziAccount;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziSegnalazioni;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,16 +25,18 @@ public class ControllerGestioneSegnalazioni {
     private GestoreSegnalazioni gestoreSegnalazioni;
 
     @Autowired
-    private ServiziUtenteRegistrato serviziUtente;
+    private ServiziAccount serviziAccount;
 
     @Autowired
     private ServiziSegnalazioni serviziSegnalazioni;
 
 
-    @PostMapping("/accetta/{segnalazioneId}/{curatoreId}")
-    public ResponseEntity<String> accettaSegnalazione(@PathVariable long segnalazioneId, @PathVariable long curatoreId) {
-        UtenteRegistrato utente = serviziUtente.getUtenteStandard(curatoreId);
-        if (verificaCuratore(utente)) {
+    @PostMapping("/accetta/{segnalazioneId}")
+    public ResponseEntity<String> accettaSegnalazione(@PathVariable long segnalazioneId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account curatore = (Account) authentication.getPrincipal();
+        curatore = serviziAccount.getAccountById(curatore.getId());
+        if (verificaCuratore(curatore)) {
             return new ResponseEntity<>("L'utente non è autorizzato", HttpStatus.FORBIDDEN);
         }
         Segnalazione segnalazione = serviziSegnalazioni.getSegnalazione(segnalazioneId);
@@ -42,10 +47,12 @@ public class ControllerGestioneSegnalazioni {
         return new ResponseEntity<>("Segnalazione accettata e contenuto eliminato", HttpStatus.OK);
     }
 
-    @PostMapping("/rifiuta/{segnalazioneId}/{curatoreId}")
-    public ResponseEntity<String> rifiutaSegnalazione(@PathVariable long segnalazioneId, @PathVariable long curatoreId) {
-        UtenteRegistrato utente = serviziUtente.getUtenteStandard(curatoreId);
-        if (verificaCuratore(utente)) {
+    @PostMapping("/rifiuta/{segnalazioneId}")
+    public ResponseEntity<String> rifiutaSegnalazione(@PathVariable long segnalazioneId) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account curatore = (Account) authentication.getPrincipal();
+        curatore = serviziAccount.getAccountById(curatore.getId());
+        if (verificaCuratore(curatore)) {
             return new ResponseEntity<>("L'utente non è autorizzato", HttpStatus.FORBIDDEN);
         }
         Segnalazione segnalazione = serviziSegnalazioni.getSegnalazione(segnalazioneId);
@@ -56,16 +63,18 @@ public class ControllerGestioneSegnalazioni {
         return new ResponseEntity<>("Segnalazione rifiutata e cancellata", HttpStatus.OK);
     }
 
-    @GetMapping("/listaSegnalazioniComune/{comuneId}/{curatoreId}")
-    public ResponseEntity<List<Segnalazione>> ottieniSegnalazioniComune(@PathVariable long comuneId, @PathVariable long curatoreId) {
-        UtenteRegistrato utente = serviziUtente.getUtenteStandard(curatoreId);
-        if (verificaCuratore(utente)) {
+    @GetMapping("/listaSegnalazioniComune/{comuneId}")
+    public ResponseEntity<List<Segnalazione>> ottieniSegnalazioniComune() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account curatore = (Account) authentication.getPrincipal();
+        curatore = serviziAccount.getAccountById(curatore.getId());
+        if (verificaCuratore(curatore)) {
             return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
-        return ResponseEntity.ok(serviziSegnalazioni.getSegnalazioniPerComune(utente.getComuneAppartenenza()));
+        return ResponseEntity.ok(serviziSegnalazioni.getSegnalazioniPerComune(curatore.getComuneAppartenenza()));
     }
 
-    private boolean verificaCuratore(UtenteRegistrato utente) {
+    private boolean verificaCuratore(Account utente) {
         return !Objects.equals(utente.getRuoloUtente(), Ruoli.CURATORE);
     }
 }

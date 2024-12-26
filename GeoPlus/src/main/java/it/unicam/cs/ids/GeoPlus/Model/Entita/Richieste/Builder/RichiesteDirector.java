@@ -8,7 +8,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.*;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -44,7 +44,7 @@ public class RichiesteDirector {
     @Autowired
     private RichiestaModificaOrarioBuilder richiestaModificaOrarioBuilder;
 
-    public RichiestaCaricamento creaRichiestaCaricamento(UtenteStandard autore, EntitaRichiesta entitaRichiesta, Comune comune) {
+    public RichiestaCaricamento creaRichiestaCaricamento(Account autore, EntitaRichiesta entitaRichiesta, Comune comune) {
         return switch (entitaRichiesta) {
             case Contenuto contenuto -> {
                 contenutoBuilder.setAutore(autore);
@@ -69,7 +69,7 @@ public class RichiesteDirector {
         };
     }
 
-    public RichiestaModificaTesto creaRichiestaModificaTesto(UtenteStandard autore, EntitaRichiesta entitaRichiesta, Comune comune, String modifica, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTesto creaRichiestaModificaTesto(Account autore, EntitaRichiesta entitaRichiesta, Comune comune, String modifica, TipoModificaTesto tipoModifica) {
         return switch (entitaRichiesta) {
             case Contenuto contenuto -> {
                 richiestaModificaTestoContenutoBuilder.setAutore(autore);
@@ -100,7 +100,7 @@ public class RichiesteDirector {
         };
     }
 
-    public RichiestaModificaPT creaRichiestaModificaPeriodoTempo(UtenteStandard autore, PoiTemporaneo poiTemporaneo, Comune comune, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
+    public RichiestaModificaPT creaRichiestaModificaPeriodoTempo(Account autore, PoiTemporaneo poiTemporaneo, Comune comune, LocalDateTime dataApertura, LocalDateTime dataChiusura) {
         richiestaModificaPeriodoTempoBuilder.setAutore(autore);
         richiestaModificaPeriodoTempoBuilder.setComune(comune);
         richiestaModificaPeriodoTempoBuilder.setPoiTemporaneo(poiTemporaneo);
@@ -109,7 +109,7 @@ public class RichiesteDirector {
         return richiestaModificaPeriodoTempoBuilder.build();
     }
 
-    public RichiestaModificaOrario creaRichiestaModificaOrario(UtenteStandard autore, Poi poi, Comune comune, int giorno, LocalTime orarioApertura, LocalTime orarioChiusura) {
+    public RichiestaModificaOrario creaRichiestaModificaOrario(Account autore, Poi poi, Comune comune, int giorno, LocalTime orarioApertura, LocalTime orarioChiusura) {
         richiestaModificaOrarioBuilder.setAutore(autore);
         richiestaModificaOrarioBuilder.setComune(comune);
         richiestaModificaOrarioBuilder.setPoi(poi);
@@ -119,7 +119,7 @@ public class RichiesteDirector {
         return richiestaModificaOrarioBuilder.build();
     }
 
-    public RichiestaSuContest creaRichiestaCaricamentoContenutoContest(UtenteStandard autore, Contenuto contenuto, Contest contest, Comune comune) {
+    public RichiestaSuContest creaRichiestaCaricamentoContenutoContest(Account autore, Contenuto contenuto, Contest contest, Comune comune) {
         contenutoContestBuilder.setAutore(autore);
         contenutoContestBuilder.setComune(comune);
         contenutoContestBuilder.setContenuto(contenuto);

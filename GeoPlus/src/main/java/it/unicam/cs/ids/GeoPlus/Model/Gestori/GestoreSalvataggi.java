@@ -1,29 +1,29 @@
 package it.unicam.cs.ids.GeoPlus.Model.Gestori;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class GestoreSalvataggi {
     @Autowired
-    private ServiziUtenteRegistrato serviziUtenteRegistrato;
+    private ServiziAccount serviziAccount;
 
-    public Boolean salvaContenuto(Contenuto contenuto, UtenteStandard utente) {
+    public Boolean salvaContenuto(Contenuto contenuto, Account utente) {
         boolean aggiunta = utente.aggiungiContenutoSalvato(contenuto);
         if (aggiunta) {
-            serviziUtenteRegistrato.salvaUtente(utente);
+            serviziAccount.salvaUtente(utente);
             return true;
         }
         return false;
     }
 
-    public Boolean eliminaContenutoDaiSalvati(Contenuto contenuto, UtenteStandard utente) {
+    public Boolean eliminaContenutoDaiSalvati(Contenuto contenuto, Account utente) {
         boolean rimozione = utente.rimuoviContenutoSalvato(contenuto);
         if (rimozione) {
-            serviziUtenteRegistrato.salvaUtente(utente);
+            serviziAccount.salvaUtente(utente);
             return true;
         }
         return false;

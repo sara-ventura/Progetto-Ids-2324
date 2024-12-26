@@ -2,7 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Contest;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
 import jakarta.persistence.*;
 
@@ -23,19 +23,19 @@ public class Contest {
     private String regole;
     private boolean pubblico;
     @ManyToOne
-    private UtenteStandard autoreContest;
+    private Account autoreContest;
     @ManyToMany
-    private List<UtenteStandard> listaPartecipanti;
+    private List<Account> listaPartecipanti;
     @OneToMany
     private List<Contenuto> listaContenuti;
     @Embedded
     private PeriodoTempo periodoTempo;
     @OneToOne
-    private UtenteStandard vincitoreContest;
+    private Account vincitoreContest;
     @ManyToMany
     private List<Poi> riferimenti;
 
-    public Contest(String nomeContest, String descrizione, UtenteStandard autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo, List<Poi> riferimenti) {
+    public Contest(String nomeContest, String descrizione, Account autoreContest, String regole, boolean pubblico, PeriodoTempo periodoTempo, List<Poi> riferimenti) {
         this.nomeContest = nomeContest;
         this.descrizione = descrizione;
         this.autoreContest = autoreContest;
@@ -80,7 +80,7 @@ public class Contest {
     }
 
 
-    public UtenteStandard getAutoreContest() {
+    public Account getAutoreContest() {
         return this.autoreContest;
     }
 
@@ -107,14 +107,14 @@ public class Contest {
     }
 
 
-    public void aggiungiPartecipanteContest(UtenteStandard partecipante) {
+    public void aggiungiPartecipanteContest(Account partecipante) {
         if (!listaPartecipanti.contains(partecipante)) {
             this.listaPartecipanti.add(partecipante);
         }
     }
 
 
-    public void rimuoviPartecipanteContest(UtenteStandard partecipante) {
+    public void rimuoviPartecipanteContest(Account partecipante) {
         this.listaPartecipanti.remove(partecipante);
     }
 
@@ -127,7 +127,7 @@ public class Contest {
         this.periodoTempo = periodoTempo;
     }
 
-    public List<UtenteStandard> getListaPartecipanti() {
+    public List<Account> getListaPartecipanti() {
         return listaPartecipanti;
     }
 
@@ -135,20 +135,22 @@ public class Contest {
         return listaContenuti;
     }
 
-    public UtenteStandard getVincitoreContest() {
+    public Account getVincitoreContest() {
         return vincitoreContest;
     }
 
-    public void setVincitoreContest(UtenteStandard vincitoreContest) {
+    public void setVincitoreContest(Account vincitoreContest) {
         this.vincitoreContest = vincitoreContest;
     }
 
-    public boolean isUtentePartecipante(UtenteStandard partecipante) {
+    public boolean isUtentePartecipante(Account partecipante) {
         return listaPartecipanti.contains(partecipante);
     }
+
     public List<Poi> getRiferimenti() {
         return riferimenti;
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

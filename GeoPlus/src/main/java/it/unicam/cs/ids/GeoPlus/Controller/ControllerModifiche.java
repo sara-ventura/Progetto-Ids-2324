@@ -4,9 +4,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.*;
 import it.unicam.cs.ids.GeoPlus.Model.Util.DTOClass.RichiestaModificaOrarioBody;
 import it.unicam.cs.ids.GeoPlus.Model.Util.DTOClass.RichiestaModificaPeriodoTempoBody;
@@ -14,6 +13,8 @@ import it.unicam.cs.ids.GeoPlus.Model.Util.DTOClass.RichiestaModificaTestoBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,7 +35,7 @@ public class ControllerModifiche {
     @Autowired
     private ServiziContenuto serviziContenuto;
     @Autowired
-    private ServiziUtenteRegistrato serviziUtenteRegistrato;
+    private ServiziAccount serviziAccount;
     @Autowired
     private ServiziItinerario serviziItinerario;
 
@@ -44,9 +45,11 @@ public class ControllerModifiche {
         if (poi == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiesteModificaTestoBody.getAutoreRichiestaId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account autoreRichiesta = (Account) authentication.getPrincipal();
+        autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
-        if (poi.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
+        if (poi.getIdAutore().equals(autoreRichiesta.getId())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
                 switch (richiesteModificaTestoBody.getTipoModifica()) {
                     case NOME -> poi.setNomePoi(richiesteModificaTestoBody.getModificaTesto());
@@ -69,9 +72,11 @@ public class ControllerModifiche {
         if (itinerario == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("itinerario non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiesteModificaTestoBody.getAutoreRichiestaId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account autoreRichiesta = (Account) authentication.getPrincipal();
+        autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
-        if (itinerario.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
+        if (itinerario.getIdAutore().equals(autoreRichiesta.getId())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
                 switch (richiesteModificaTestoBody.getTipoModifica()) {
                     case NOME -> itinerario.setNomeItinerario(richiesteModificaTestoBody.getModificaTesto());
@@ -95,9 +100,11 @@ public class ControllerModifiche {
         if (contenuto == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("contenuto non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiesteModificaTestoBody.getAutoreRichiestaId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account autoreRichiesta = (Account) authentication.getPrincipal();
+        autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
-        if (contenuto.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
+        if (contenuto.getIdAutore().equals(autoreRichiesta.getId())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
                 contenuto.setTesto(richiesteModificaTestoBody.getModificaTesto());
                 serviziContenuto.aggiornaContenuto(contenuto);
@@ -116,9 +123,11 @@ public class ControllerModifiche {
         if (poi == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiestaModificaOrarioBody.getAutoreRichiestaId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account autoreRichiesta = (Account) authentication.getPrincipal();
+        autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
-        if (poi.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
+        if (poi.getIdAutore().equals(autoreRichiesta.getId())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
                 poi.setOrarioPoi(richiestaModificaOrarioBody.getGiorno(), richiestaModificaOrarioBody.getOrarioApertura(), richiestaModificaOrarioBody.getOrarioChiusura());
                 serviziPoi.aggiornaPoi(poi);
@@ -137,9 +146,11 @@ public class ControllerModifiche {
         if (poiTemporaneo == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi temporaneo non trovato");
         }
-        UtenteStandard autoreRichiesta = serviziUtenteRegistrato.getUtenteStandard(richiestaModificaPeriodoTempoBody.getAutoreRichiestaId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account autoreRichiesta = (Account) authentication.getPrincipal();
+        autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
-        if (poiTemporaneo.getIdAutore().equals(autoreRichiesta.getIdUtente())) {
+        if (poiTemporaneo.getIdAutore().equals(autoreRichiesta.getId())) {
             if (verificaAutorizzazioneUtente(autoreRichiesta)) {
                 poiTemporaneo.setDataApertura(richiestaModificaPeriodoTempoBody.getDataApertura());
                 poiTemporaneo.setDataChiusura(richiestaModificaPeriodoTempoBody.getDataChiusura());
@@ -159,14 +170,14 @@ public class ControllerModifiche {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Non hai le autorizzazioni per modificare questo contenuto");
     }
 
-    private void validateUtente(UtenteStandard utente) {
+    private void validateUtente(Account utente) {
         if (utente == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato");
         }
     }
 
 
-    private boolean verificaAutorizzazioneUtente(UtenteRegistrato autoreCaricamento) {
+    private boolean verificaAutorizzazioneUtente(Account autoreCaricamento) {
         Ruoli ruolo = autoreCaricamento.getRuoloUtente();
         return (ruolo.toString().equals(Ruoli.CONTRIBUTOR_AUTORIZZATO.toString()) ||
                 ruolo.toString().equals(Ruoli.CURATORE.toString()) ||

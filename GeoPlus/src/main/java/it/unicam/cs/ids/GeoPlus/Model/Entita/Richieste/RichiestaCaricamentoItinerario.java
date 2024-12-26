@@ -2,8 +2,7 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToOne;
 
@@ -14,7 +13,7 @@ public class RichiestaCaricamentoItinerario extends RichiestaCaricamento {
     @OneToOne
     private Itinerario itinerario;
 
-    public RichiestaCaricamentoItinerario(UtenteStandard autoreRichiesta, Comune comune, Itinerario Itinerario) {
+    public RichiestaCaricamentoItinerario(Account autoreRichiesta, Comune comune, Itinerario Itinerario) {
         super(autoreRichiesta, comune);
         this.itinerario = Itinerario;
 

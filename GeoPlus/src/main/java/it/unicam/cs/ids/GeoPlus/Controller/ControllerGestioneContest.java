@@ -4,17 +4,19 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Contest.Contest;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.Richiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste.RichiestaSuContest;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli.Ruoli;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli;
 import it.unicam.cs.ids.GeoPlus.Model.Gestori.GestoreRichieste;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziAccount;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziContest;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziPoi;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziRichieste;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziUtenteRegistrato;
 import it.unicam.cs.ids.GeoPlus.Model.Util.DTOClass.ContestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -30,7 +32,7 @@ public class ControllerGestioneContest {
     private ServiziContest serviziContest;
 
     @Autowired
-    private ServiziUtenteRegistrato serviziUtente;
+    private ServiziAccount serviziAccount;
 
     @Autowired
     private ServiziPoi serviziPoi;
@@ -42,12 +44,14 @@ public class ControllerGestioneContest {
 
     @PostMapping("/creaContest")
     public ResponseEntity<String> creaContest(@Valid @RequestBody ContestBody contestBody) {
-        UtenteStandard autoreContest = validaAnimatore(contestBody.getAutoreContestId());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account user = (Account) authentication.getPrincipal();
+        user = validaAnimatore(user);
         List<Poi> riferimenti = validaPoiList(contestBody.getPoiIds());
         serviziContest.creaContest(
                 contestBody.getNomeContest(),
                 contestBody.getDescrizione(),
-                autoreContest,
+                user,
                 contestBody.getRegole(),
                 contestBody.isPubblico(),
                 contestBody.getPeriodoTempo(),
@@ -57,18 +61,22 @@ public class ControllerGestioneContest {
         return new ResponseEntity<>("Contest creato con successo", HttpStatus.CREATED);
     }
 
-    @PostMapping("/invitaUtente/{idAnimatore}/{idContest}/{idUtente}")
-    public ResponseEntity<String> invitaUtente(@PathVariable Long idAnimatore, @PathVariable Long idContest, @PathVariable Long idUtente) {
-        validaAnimatore(idAnimatore);
+    @PostMapping("/invitaUtente/{idContest}/{idUtente}")
+    public ResponseEntity<String> invitaUtente(@PathVariable Long idContest, @PathVariable Long idUtente) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account user = (Account) authentication.getPrincipal();
+        validaAnimatore(user);
         Contest contest = validaContest(idContest);
         validaUtenteInvito(contest, idUtente);
-        serviziContest.creaInvito(serviziUtente.getUtenteStandard(idUtente), contest);
+        serviziContest.creaInvito(serviziAccount.getAccountById(idUtente), contest);
         return new ResponseEntity<>("Invito creato con successo", HttpStatus.CREATED);
     }
 
-    @PostMapping("/accettaRichiesta/{idAnimatore}/{idRichiesta}")
-    public ResponseEntity<String> accettaRichiesta(@PathVariable Long idAnimatore, @PathVariable Long idRichiesta) {
-        validaAnimatore(idAnimatore);
+    @PostMapping("/accettaRichiesta/{idRichiesta}")
+    public ResponseEntity<String> accettaRichiesta( @PathVariable Long idRichiesta) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account user = (Account) authentication.getPrincipal();
+        validaAnimatore(user);
         Richiesta richiesta = serviziRichieste.getRichiesta(idRichiesta);
         ResponseEntity<String> response = validaRichiesta(richiesta);
         if (response != null) {
@@ -78,9 +86,11 @@ public class ControllerGestioneContest {
         return new ResponseEntity<>("Richiesta accettata con successo", HttpStatus.OK);
     }
 
-    @PostMapping("/rifiutaRichiesta/{idAnimatore}/{idRichiesta}")
-    public ResponseEntity<String> rifiutaRichiesta(@PathVariable Long idAnimatore, @PathVariable Long idRichiesta) {
-        validaAnimatore(idAnimatore);
+    @PostMapping("/rifiutaRichiesta/{idRichiesta}")
+    public ResponseEntity<String> rifiutaRichiesta(@PathVariable Long idRichiesta) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account user = (Account) authentication.getPrincipal();
+        validaAnimatore(user);
         Richiesta richiesta = serviziRichieste.getRichiesta(idRichiesta);
         ResponseEntity<String> response = validaRichiesta(richiesta);
         if (response != null) {
@@ -91,14 +101,16 @@ public class ControllerGestioneContest {
         return new ResponseEntity<>("Richiesta rifiutata con successo", HttpStatus.OK);
     }
 
-    @PostMapping("/decretaVincitore/{idAnimatore}/{idContest}/{idPartecipante}")
-    public ResponseEntity<String> decretaVincitore(@PathVariable Long idAnimatore, @PathVariable Long idContest, @PathVariable Long idPartecipante) {
-        validaAnimatore(idAnimatore);
+    @PostMapping("/decretaVincitore/{idContest}/{idPartecipante}")
+    public ResponseEntity<String> decretaVincitore(@PathVariable Long idContest, @PathVariable Long idPartecipante) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Account user = (Account) authentication.getPrincipal();
+        validaAnimatore(user);
         Contest contest = validaContest(idContest);
         if (contest.getVincitoreContest() != null) {
             return new ResponseEntity<>("Il contest ha già un vincitore.", HttpStatus.BAD_REQUEST);
         }
-        UtenteStandard partecipante = validaUtente(idPartecipante);
+        Account partecipante = validaUtente(idPartecipante);
         if (!contest.isUtentePartecipante(partecipante)) {
             return new ResponseEntity<>("L'utente specificato non è un partecipante del contest.", HttpStatus.BAD_REQUEST);
         }
@@ -107,8 +119,8 @@ public class ControllerGestioneContest {
         return new ResponseEntity<>("Vincitore decretato con successo.", HttpStatus.OK);
     }
 
-    private UtenteStandard validaUtente(Long idUtente) {
-        UtenteStandard utente = serviziUtente.getUtenteStandard(idUtente);
+    private Account validaUtente(Long idUtente) {
+        Account utente = serviziAccount.getAccountById(idUtente);
         if (utente == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato");
         }
@@ -139,7 +151,7 @@ public class ControllerGestioneContest {
         if (contest.isPubblico()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Il contest è pubblico");
         }
-        UtenteStandard utenteDaInvitare = serviziUtente.getUtenteStandard(idUtente);
+        Account utenteDaInvitare = serviziAccount.getAccountById(idUtente);
         if (utenteDaInvitare == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato");
         }
@@ -155,8 +167,7 @@ public class ControllerGestioneContest {
         return null;
     }
 
-    private UtenteStandard validaAnimatore(long idUtente) {
-        UtenteStandard utente = serviziUtente.getUtenteStandard(idUtente);
+    private Account validaAnimatore(Account utente) {
         if (utente == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Utente non trovato");
         }

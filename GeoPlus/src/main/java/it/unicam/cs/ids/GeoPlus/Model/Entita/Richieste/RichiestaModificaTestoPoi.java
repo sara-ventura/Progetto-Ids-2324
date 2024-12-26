@@ -2,13 +2,11 @@ package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteRegistrato;
-import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.UtenteStandard;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
-
 
 
 @Entity
@@ -17,7 +15,7 @@ public class RichiestaModificaTestoPoi extends RichiestaModificaTesto {
     @ManyToOne
     private Poi poi;
 
-    public RichiestaModificaTestoPoi(UtenteStandard autoreRichiesta, Comune comune, Poi poi, String modificaTesto, TipoModificaTesto tipoModifica) {
+    public RichiestaModificaTestoPoi(Account autoreRichiesta, Comune comune, Poi poi, String modificaTesto, TipoModificaTesto tipoModifica) {
         super(autoreRichiesta, comune, modificaTesto, tipoModifica);
         this.poi = poi;
     }
@@ -38,7 +36,7 @@ public class RichiestaModificaTestoPoi extends RichiestaModificaTesto {
         if (!super.equals(o)) return false;
 
         RichiestaModificaTestoPoi richiestaModificaTestoPoi = (RichiestaModificaTestoPoi) o;
-        return Objects.equals(poi, richiestaModificaTestoPoi.poi) ;
+        return Objects.equals(poi, richiestaModificaTestoPoi.poi);
     }
 
     @Override
