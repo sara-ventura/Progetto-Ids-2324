@@ -2,7 +2,6 @@ package it.unicam.cs.ids.GeoPlus.Controller;
 
 
 import it.unicam.cs.ids.GeoPlus.Model.Auth.*;
-import it.unicam.cs.ids.GeoPlus.Model.Repository.AccountRepository;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziAutenticazione;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class AutenticationController {
+public class ControllerAutenticazioni {
     @Autowired
     private ServiziAutenticazione authService;
 

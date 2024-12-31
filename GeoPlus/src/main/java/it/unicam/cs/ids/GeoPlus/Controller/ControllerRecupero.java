@@ -1,19 +1,16 @@
 package it.unicam.cs.ids.GeoPlus.Controller;
 
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contest.Contest;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziComune;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziContest;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziItinerario;
-import it.unicam.cs.ids.GeoPlus.Model.Servizi.ServiziPoi;
+import it.unicam.cs.ids.GeoPlus.Model.Servizi.*;
 import it.unicam.cs.ids.GeoPlus.Model.Util.RisultatiRicercaGenerica;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/cerca")
-public class ControllerRicerche {
+public class ControllerRecupero {
     @Autowired
     private ServiziPoi serviziPoi;
     @Autowired
@@ -31,8 +27,10 @@ public class ControllerRicerche {
     private ServiziContest serviziContest;
     @Autowired
     private ServiziItinerario serviziItinerario;
+    @Autowired
+    private ServiziContenuto serviziContenuto;
 
-    @GetMapping("generico")
+    @GetMapping("/cerca/generico")
     public ResponseEntity<List<Object>> ricercaGenerica(@RequestParam String nome) {
         RisultatiRicercaGenerica risultati = new RisultatiRicercaGenerica();
         Comune comune = serviziComune.getComune(nome);
@@ -53,27 +51,60 @@ public class ControllerRicerche {
     }
 
 
-    @GetMapping("Comune")
+    @GetMapping("/cerca/Comune")
     public ResponseEntity<Comune> cercaComune(@RequestParam String nomeComune) {
         Comune comune = serviziComune.getComune(nomeComune);
         return ResponseEntity.ok(comune);
     }
 
-    @GetMapping("Poi")
+    @GetMapping("/cerca/Poi")
     public ResponseEntity<List<Poi>> cercaPoi(@RequestParam String nomePoi) {
         List<Poi> pois = serviziPoi.getPoiApprovati(nomePoi);
         return ResponseEntity.ok(pois);
     }
 
-    @GetMapping("Itinerario")
+
+    @GetMapping("/cerca/Itinerario")
     public ResponseEntity<List<Itinerario>> cercaItinerario(@RequestParam String nomeItinerario) {
         List<Itinerario> itinerari = serviziItinerario.getItinerariApprovati(nomeItinerario);
         return ResponseEntity.ok(itinerari);
     }
 
-    @GetMapping("Contest")
+    @GetMapping("/cerca/Contest")
     public ResponseEntity<List<Contest>> cercaContest(@RequestParam String nomeContest) {
         List<Contest> contest = serviziContest.getContests(nomeContest);
+        return ResponseEntity.ok(contest);
+    }
+
+
+    @GetMapping("/getPoi")
+    public ResponseEntity<Poi> getPoi(@RequestParam Long poiId) {
+        Poi poi = serviziPoi.getPoi(poiId);
+        return ResponseEntity.ok(poi);
+    }
+
+    @GetMapping("/getItinerario")
+    public ResponseEntity<Itinerario> getItinerario(@RequestParam Long itinerarioId) {
+        Itinerario itinerario = serviziItinerario.getItinerario(itinerarioId);
+        return ResponseEntity.ok(itinerario);
+    }
+
+    @GetMapping("/getContenuto")
+    public ResponseEntity<Contenuto> getContenuto(@RequestParam Long contenutoId) {
+        Contenuto contenuto = serviziContenuto.getContenuto(contenutoId);
+        return ResponseEntity.ok(contenuto);
+    }
+
+
+    @GetMapping("/getComune")
+    public ResponseEntity<Comune> getComune(@RequestParam Long comuneId) {
+        Comune comune = serviziComune.getComune(comuneId);
+        return ResponseEntity.ok(comune);
+    }
+
+    @GetMapping("/getContest")
+    public ResponseEntity<Contest> getContest(@RequestParam Long contestId) {
+        Contest contest = serviziContest.getContest(contestId);
         return ResponseEntity.ok(contest);
     }
 
