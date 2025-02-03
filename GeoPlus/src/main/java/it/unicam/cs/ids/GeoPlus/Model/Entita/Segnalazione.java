@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import jakarta.persistence.*;
@@ -11,11 +12,11 @@ public class Segnalazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idSegnalazione;
-    @ManyToOne
+    @ManyToOne @JsonIgnore
     private Account autoreSegnalazione;
     @ManyToOne
     private Contenuto contenutoSegnalato;
-    @ManyToOne
+    @ManyToOne @JsonIgnore
     private Comune comuneSegnalazione;
 
     private String motivoSegnalazione;

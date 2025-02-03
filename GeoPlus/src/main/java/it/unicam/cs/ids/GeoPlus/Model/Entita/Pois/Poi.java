@@ -73,7 +73,7 @@ public class Poi extends EntitaRichiesta {
     }
 
 
-    public List<Contenuto> getListaConetnutiAssociati() {
+    public List<Contenuto> getContenutiAssociati() {
         return this.contenutiAssociati;
     }
 

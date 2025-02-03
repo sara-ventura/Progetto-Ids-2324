@@ -4,7 +4,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
 import it.unicam.cs.ids.GeoPlus.Model.Repository.ItinerarioRepository;
-import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
+import it.unicam.cs.ids.GeoPlus.Model.Util.GestroreSistemaOSM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class ServiziItinerario {
     private ServiziComune serviziComune;
 
     @Autowired
-    private SistemaOSM sistemaOSM;
+    private GestroreSistemaOSM sistemaOSM;
 
     public Itinerario creaItinerario(String nomeItinerario, String descrizioneItinerario, Comune comune, List<Poi> listaPoi)
             throws IllegalArgumentException {

@@ -6,7 +6,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneGiaEsistenteExcept
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.ComuneNonTrovatoException;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.NomeComuneIncompatibileException;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
-import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
+import it.unicam.cs.ids.GeoPlus.Model.Util.GestroreSistemaOSM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +19,7 @@ public class ServiziComune {
     private ComuniRepository repository;
 
     @Autowired
-    private SistemaOSM sistemaOSM;
+    private GestroreSistemaOSM sistemaOSM;
 
     public Comune creaComune(String nomeComune, String descrizione, Coordinate coordinate)
             throws ComuneGiaEsistenteException, ComuneNonTrovatoException, NomeComuneIncompatibileException {

@@ -102,13 +102,13 @@ public class ControllerRecupero {
         return ResponseEntity.ok(comune);
     }
 
-    @GetMapping("/getContest")
+    @GetMapping("/cerca/getContest")
     public ResponseEntity<Contest> getContest(@RequestParam Long contestId) {
         Contest contest = serviziContest.getContest(contestId);
         return ResponseEntity.ok(contest);
     }
 
-    @GetMapping("/ottieniListaPoi")
+    @GetMapping("/cerca/ottieniListaPoi")
     public ResponseEntity<List<Poi>> ottieniListaPoi(@RequestParam String nomeComune) {
         Comune comune = serviziComune.getComune(nomeComune);
         List<Poi> poiApprovati = comune.getPoiAssociati().stream()

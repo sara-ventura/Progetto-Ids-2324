@@ -1,5 +1,6 @@
 package it.unicam.cs.ids.GeoPlus.Model.Entita.Richieste;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Comune;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
@@ -17,7 +18,7 @@ public abstract class Richiesta {
     private Long RichiestaId;
     @ManyToOne
     private Account autoreRichiesta;
-    @ManyToOne
+    @ManyToOne @JsonIgnore
     private Comune comune;
 
 
@@ -28,6 +29,9 @@ public abstract class Richiesta {
     public Richiesta(Account autoreRichiesta, Comune comune) {
         this.autoreRichiesta = autoreRichiesta;
         this.comune = comune;
+    }
+    public Long getRichiestaId() {
+        return RichiestaId;
     }
 
 
@@ -56,6 +60,7 @@ public abstract class Richiesta {
     public int hashCode() {
         return Objects.hash(autoreRichiesta, comune);
     }
+
 
 
 }

@@ -9,7 +9,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Repository.PoiRepository;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.Eccezioni.PoiGiaEsistenteException;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import it.unicam.cs.ids.GeoPlus.Model.Util.PeriodoTempo;
-import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
+import it.unicam.cs.ids.GeoPlus.Model.Util.GestroreSistemaOSM;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class ServiziPoi {
     private ComuniRepository comuniRepository;
 
     @Autowired
-    private SistemaOSM sistemaOSM;
+    private GestroreSistemaOSM sistemaOSM;
 
     public Poi creaPoi(String nomePoi, String descrizionePoi, Coordinate posizionePoi, Comune comunePoi) throws ComuneNonTrovatoException {
         boolean corrispondenza = sistemaOSM.contieneCoordinate(posizionePoi, comunePoi.getNomeComune());

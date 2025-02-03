@@ -1,7 +1,7 @@
 package it.unicam.cs.ids.GeoPlus;
 
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
-import it.unicam.cs.ids.GeoPlus.Model.Util.SistemaOSM;
+import it.unicam.cs.ids.GeoPlus.Model.Util.GestroreSistemaOSM;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 public class SistemaOSMTest {
     @Autowired
-    private SistemaOSM sistemaOSM;
+    private GestroreSistemaOSM sistemaOSM;
 
 
     @Test
