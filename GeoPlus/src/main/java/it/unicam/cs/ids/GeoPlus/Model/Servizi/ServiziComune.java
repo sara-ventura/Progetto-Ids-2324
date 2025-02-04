@@ -19,18 +19,18 @@ public class ServiziComune {
     private ComuniRepository repository;
 
     @Autowired
-    private GestroreSistemaOSM sistemaOSM;
+    private GestroreSistemaOSM getsoreSistemaOSM;
 
     public Comune creaComune(String nomeComune, String descrizione, Coordinate coordinate)
             throws ComuneGiaEsistenteException, ComuneNonTrovatoException, NomeComuneIncompatibileException {
-        if (!sistemaOSM.verificaComuneEsiste(nomeComune)) {
+        if (!getsoreSistemaOSM.verificaComuneEsiste(nomeComune)) {
             throw new ComuneNonTrovatoException("Il nome del comune inserito non è valido. Si prega di controllare e riprovare.\"");
         }
         if (getComune(coordinate) != null) {
             throw new ComuneGiaEsistenteException("");
         }
-        String nomeComuneDaCoordinate = sistemaOSM.getNomeComuneDaCoordinate(coordinate);
-        String nomeComuneFormattato = sistemaOSM.formattaNomeComune(nomeComune);
+        String nomeComuneDaCoordinate = getsoreSistemaOSM.getNomeComuneDaCoordinate(coordinate);
+        String nomeComuneFormattato = getsoreSistemaOSM.formattaNomeComune(nomeComune);
         if (!Objects.equals(nomeComuneDaCoordinate, nomeComuneFormattato)) {
             throw new NomeComuneIncompatibileException();
         }
@@ -44,7 +44,7 @@ public class ServiziComune {
 
 
     public Comune getComune(Coordinate coordinate) {
-        String nomeComune = sistemaOSM.getNomeComuneDaCoordinate(coordinate);
+        String nomeComune = getsoreSistemaOSM.getNomeComuneDaCoordinate(coordinate);
         return repository.findByNomeComune(nomeComune);
     }
 

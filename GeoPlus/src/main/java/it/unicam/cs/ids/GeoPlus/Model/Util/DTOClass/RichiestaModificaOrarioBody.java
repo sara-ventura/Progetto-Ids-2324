@@ -5,7 +5,6 @@ import java.time.LocalTime;
 public class RichiestaModificaOrarioBody {
 
     private Long PoiId;
-    private String modificaTesto;
 
     private int giorno;
     private LocalTime orarioApertura;
@@ -13,10 +12,6 @@ public class RichiestaModificaOrarioBody {
 
     public Long getPoiId() {
         return PoiId;
-    }
-
-    public String getModificaTesto() {
-        return modificaTesto;
     }
 
 

@@ -118,7 +118,7 @@ public class ControllerRecupero {
         return ResponseEntity.ok(poiApprovati);
     }
 
-    @GetMapping("ottieniListaItinerari")
+    @GetMapping("/cerca/ottieniListaItinerari")
     public ResponseEntity<List<Itinerario>> ottieniListaItinerari(@RequestParam String nomeComune) {
         Comune comune = serviziComune.getComune(nomeComune);
         List<Itinerario> itinerariApprovati = comune.getItinerariAssociati().stream()
