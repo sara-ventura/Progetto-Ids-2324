@@ -123,8 +123,11 @@ public class ControllerModifiche {
         if (poi == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi non trovato");
         }
+
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Account autoreRichiesta = (Account) authentication.getPrincipal();
+
         autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
         if (poi.getIdAutore().equals(autoreRichiesta.getId())) {
@@ -146,8 +149,10 @@ public class ControllerModifiche {
         if (poiTemporaneo == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Poi temporaneo non trovato");
         }
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Account autoreRichiesta = (Account) authentication.getPrincipal();
+
         autoreRichiesta = serviziAccount.getAccountById(autoreRichiesta.getId());
         validateUtente(autoreRichiesta);
         if (poiTemporaneo.getIdAutore().equals(autoreRichiesta.getId())) {

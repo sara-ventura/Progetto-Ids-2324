@@ -5,6 +5,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.Contenuto;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Coordinate;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.EntitaRichiesta;
 import it.unicam.cs.ids.GeoPlus.Model.Util.Orari;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
@@ -24,7 +25,8 @@ public class Poi extends EntitaRichiesta {
     private Coordinate posizionePoi;
     @Embedded
     private Orari orariPoi;
-    @OneToMany@JsonManagedReference
+    @JsonManagedReference
+    @OneToMany(mappedBy = "poi", cascade = CascadeType.REMOVE)
     private List<Contenuto> contenutiAssociati;
 
 

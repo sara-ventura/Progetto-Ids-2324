@@ -4,14 +4,14 @@ import java.time.LocalTime;
 
 public class RichiestaModificaOrarioBody {
 
-    private Long PoiId;
+    private Long poiId;
 
     private int giorno;
     private LocalTime orarioApertura;
     private LocalTime orarioChiusura;
 
     public Long getPoiId() {
-        return PoiId;
+        return poiId;
     }
 
 

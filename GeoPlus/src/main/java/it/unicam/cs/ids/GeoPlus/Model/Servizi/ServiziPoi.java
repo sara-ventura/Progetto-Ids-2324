@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ServiziPoi {
@@ -88,15 +89,17 @@ public class ServiziPoi {
         return poiRepository.findById(idPoi).orElse(null);
     }
 
+
     public PoiTemporaneo getPoiTemporaneo(Long idPoi) {
         List<PoiTemporaneo> poisTemporanei = poiRepository.findAllTemporanei();
         for (PoiTemporaneo poiTemporaneo : poisTemporanei) {
-            if (poiTemporaneo.getId().equals(idPoi)) {
+            if (Objects.equals(poiTemporaneo.getId(), idPoi)) {
                 return poiTemporaneo;
             }
         }
         return null;
     }
+
     @Scheduled(cron = "0 0 0 * * ?")
     public void rimuoviPoiTemporaneiScaduti() {
         List<PoiTemporaneo> poisTemporanei = poiRepository.findAllTemporanei();

@@ -6,6 +6,7 @@ import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.ContenutoMultimediale;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Contenuto.ContenutoTestuale;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Itinerario;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.Poi;
+import it.unicam.cs.ids.GeoPlus.Model.Entita.Pois.PoiTemporaneo;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Account;
 import it.unicam.cs.ids.GeoPlus.Model.Entita.Utenti.Ruoli;
 import it.unicam.cs.ids.GeoPlus.Model.Servizi.*;
@@ -80,7 +81,7 @@ public class ControllerCaricamenti {
         if (user.getComuneAppartenenza().toString().equals(comunePoi.getNomeComune())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        Poi poi = serviziPoi.creaPoi(poiBody.getNomePoi(), poiBody.getDescrizionePoi(), posizionePoi, comunePoi, poiBody.getPeriodoApertura());
+        PoiTemporaneo poi = serviziPoi.creaPoi(poiBody.getNomePoi(), poiBody.getDescrizionePoi(), posizionePoi, comunePoi, poiBody.getPeriodoApertura());
         poi.setIdAutore(user.getId());
         if (user.getRuoloUtente().toString().equals(Ruoli.CONTRIBUTOR_AUTORIZZATO.toString()) ||
                 user.getRuoloUtente().toString().equals(Ruoli.CURATORE.toString()) ||
